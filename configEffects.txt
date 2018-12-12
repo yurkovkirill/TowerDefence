@@ -1,0 +1,10 @@
+slwns_lvl_0 = 2
+slwns_lvl_1 = 3
+slwns_lvl_2 = 5
+poison_lvl_0 = 4
+poison_lvl_1 = 10 
+poison_lvl_2 = 25
+poison_rate = 2
+weak_lvl_0 = 2
+weak_lvl_1 = 4
+weak_lvl_2 = 8

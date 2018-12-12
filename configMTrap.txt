@@ -1,0 +1,12 @@
+dmg1 = 25
+rad1 = 4.0
+rate1 = 4
+cost1 = 100
+dmg2 = 40
+rad2 = 6.0
+rate2 = 5
+cost2 = 150
+dmg3 = 65
+rad3 = 10.0
+rate3 = 6
+cost3 = 200
