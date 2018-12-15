@@ -34,7 +34,7 @@ private:
 
 	void setwave(int wavenum , int lvl);
 
-	void setpath();
+	bool setpath(int startX, int startY, int targetX, int targetY);
 public:
 	Lair();
 

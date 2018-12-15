@@ -22,13 +22,19 @@ Landscape::Landscape(const std::string mfname){//setup like
 		fs >> tmp; fs >> tmp; fs >> Ccor.y; fs >> Ccor.x;
 		fs >> tmp; fs >> tmp; fs >> Lcor.y; fs >> Lcor.x;
 		Map = new char*[height];
-		for (int i = 0; i < height; i++)
+		int i = 0;
+		for (i = 0; i<height; i++)
+			Map[i] = new char[width];
+		for (i = 0; i < height; i++)
+		{
+			fs.get();
 			for (int j = 0; j < width; j++){
-				fs >> Map[i][j];
+				Map[i][j] = fs.get();
 			}
+		}
 		fs.close();
-		LairL = new Lair(this , Lcor.x, Lcor.y);
 		CastleL = new Castle(this, "configCastle.txt", Ccor.x, Ccor.y);
+		LairL = new Lair(this, Lcor.x, Lcor.y);
 	}
 	
 }
@@ -38,6 +44,12 @@ std::vector<Enemy> * Landscape::getEnemies(){
 
 char*** Landscape::getMap(){
 	return &(this->Map);
+}
+dot Landscape::getCcor(){
+	return (*CastleL).getCor();
+}
+dot Landscape::getLcor(){
+	return (*LairL).getCor();
 }
 
 void Landscape::delEn(int enit) {//удаляется [enit]

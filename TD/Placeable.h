@@ -11,13 +11,12 @@ private:
 	dot cor;
 protected:
 	Landscape* Land;
-public:
-	dot getCor();
-
 protected:
 	void setCor(dot cor);
 
 public:
+	dot getCor();
+
 	Placeable();
 
 	Placeable(Landscape* Land1 , int int_posx , int int_posy);

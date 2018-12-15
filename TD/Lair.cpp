@@ -49,9 +49,93 @@ void Lair::setwave(int wavenum , int lvl) {
 	}
 }
 
-void Lair::setpath() {
-	// TODO - implement Lair::setpath
-	throw "Not yet implemented";
+bool Lair::setpath(int startX, int startY, int targetX, int targetY) {
+	/// Поиск пути (Волновой)
+	/// </summary>
+	/// <param name="startX">Координата старта X</param>
+	/// <param name="startY">Координата старта Y</param>
+	/// <param name="targetX">Координата финиша X</param>
+	/// <param name="targetY">Координата финиша Y</param>
+	{
+		bool stop = false;
+		int x, y, step = 0; 
+		int MapWidth = (*Land).width;
+		int MapHeight = (*Land).height;
+		int** cMap = new int*[];
+		int i;
+		for (i = 0; i < MapHeight; i++)
+			cMap[i] = new int[];
+		char** Map = (*(*Land).getMap());
+
+		for (y = 0; y < MapHeight; y++)
+			for (x = 0; x < MapWidth; x++)
+			{
+				if (Map[y][x] != '=')
+					cMap[y][x] = -2;//индикатор стены
+				else
+					cMap[y][x] = -1;//индикатор еще не ступали сюда
+			}
+		cMap[startY][startX] = 0;//Начинаем с финиша
+		cMap[targetY][targetX] = -1;
+		while (!stop == true)//пока еще есть непомеченные или не достигли финиша 
+		{
+			stop = true;
+			for (y = 0; y < MapWidth; y++)
+				for (x = 0; x < MapHeight; x++)
+				{
+					if (cMap[x][y] == step)
+					{
+						//Ставим значение шага+1 в соседние ячейки (если они проходимы)
+						if (y - 1 >= 0 && cMap[x - 1][y] != -2 && cMap[x - 1][y] == -1){
+							cMap[x - 1][y] = step + 1; stop = false;}
+						if (x - 1 >= 0 && cMap[x][y - 1] != -2 && cMap[x][y - 1] == -1){
+							cMap[x][y - 1] = step + 1; stop = false;}
+						if (y + 1 < MapWidth && cMap[x + 1][y] != -2 && cMap[x + 1][y] == -1){
+							cMap[x + 1][y] = step + 1; stop = false;}
+						if (x + 1 < MapHeight && cMap[x][y + 1] != -2 && cMap[x][y + 1] == -1){
+							cMap[x][y + 1] = step + 1; stop = false;}
+					}
+				}
+			step++;
+			if (cMap[targetY][targetX] != -1)//решение найдено
+				stop = true;
+		}
+		// восстановление пути
+		int len = cMap[targetX][targetY];// длина кратчайшего пути из (ax, ay) в (bx, by)
+		x = targetX;
+		y = targetY;
+		int d = len;
+		dot patht;
+		while (d > 0)
+		{
+			patht.x = x;
+			patht.y = y;
+			path.push(patht);// записываем ячейку (x, y) в путь
+			d--;
+			int iy; int ix;
+			for (i = 0; i < 4; ++i)
+			{
+				if (i == 0){ iy = y + 1; ix = x + 1; }
+				if (i == 1){ iy = y - 1; ix = x + 1; }
+				if (i == 2){ iy = y + 1; ix = x - 1; }
+				if (i == 3){ iy = y - 1; ix = x - 1; }
+
+				if (iy >= 0 && iy < MapHeight && ix >= 0 && ix < MapWidth && cMap[iy][ix] == d)
+				{
+					x = ix;
+					y = iy;           // переходим в ячейку, которая на 1 ближе к старту
+					break;
+				}
+			}
+		}
+		patht.x = startX;
+		patht.y = startY;// теперь px[0..len] и py[0..len] - координаты ячеек пути
+		for (i = 0; i < MapHeight; i++)
+			delete[] cMap[i];
+		delete[] cMap;
+		return true;
+		
+}
 }
 
 Lair::Lair() :Placeable(nullptr, SIZEL-4 , SIZEL-4) /*, wave(1), lvl(0) */ {
@@ -73,6 +157,8 @@ Lair::Lair(Landscape* Land1, int x, int y) : Placeable(Land1, x, y) /*wave(1), l
 	//	Tactic[i].lvl = 0;
 	//}
 	//path
+	if (!setpath(x, y, (*Land).getCcor().x, (*Land).getCcor().y))
+		throw std::exception("Path not found");
 	setTactic("configLair.txt");
 
 }

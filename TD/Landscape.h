@@ -18,17 +18,19 @@ private:
 	std::vector<Enemy> Enemyout;//доступ для других если по указателю то по ссылке
 	std::vector<Weapon*> Weapons;
 	char **Map;//
-	int height; int width;
 	Castle* CastleL;//
 	Lair* LairL;
 
 public:
+	int height; int width;
 	void TurnL(); //death of enemyout here
 	Landscape();
 	Landscape(const std::string mfname);
 	int addenemy(Enemy*);//
 	std::vector<Enemy> *getEnemies();//*==& он может меняться в Lair e.g.
 	char*** getMap();
+	dot getCcor();
+	dot getLcor();
 	void delEn(int enit);
 
 	int BuildT(int x,int y);
