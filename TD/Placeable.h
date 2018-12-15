@@ -24,9 +24,9 @@ public:
 
 	void SetLand(Landscape* Land1){ this->Land = Land1; };
 
-	virtual void Turn();// = 0; //то же что и внизу , но просто placeable мы теперь не может создать
+	//virtual void Turn();// = 0; //то же что и внизу , но просто placeable мы теперь не может создать
 
-	/*virtual*/ ~Placeable();// = default;//дефолтный 
+	/*virtual*/ //~Placeable();// = default;//дефолтный 
 };
 
 #endif

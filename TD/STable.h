@@ -24,24 +24,18 @@
 
 
 
-template</*class Type, */size_t N>
+template<class Type,size_t N>
 class STable {
 
 private:
-	/*Type*/TableS Specs[N];
+	Type Specs[N];
 public:
-	/*Type*/TableS getVal(int lvl){
+	Type getVal(int lvl){
 		if ((lvl < 0)||(lvl>N-1)){
 			throw std::range_error("Invalid lvl");
 		}
 		return this->Specs[lvl];
 	}
-
-	/*Type*/TableS front();
-
-	/*Type*/TableS back();
-
-	size_t size();
 
 	STable();
 
@@ -52,10 +46,11 @@ public:
 		{
 			std::string tmp;
 			for (int i = 0; i < N; i++){
-				fs >> tmp; fs >> tmp; fs >> Specs[i].dmg;
+				fs >> tmp; fs >> tmp; fs >> Specs[i];
+				/*fs >> tmp; fs >> tmp; fs >> Specs[i].dmg;
 				fs >> tmp; fs >> tmp; fs >> Specs[i].rad;
 				fs >> tmp; fs >> tmp; fs >> Specs[i].rate;
-				fs >> tmp; fs >> tmp; fs >> Specs[i].cost;
+				fs >> tmp; fs >> tmp; fs >> Specs[i].cost;*/
 			}
 			fs.close();
 		}

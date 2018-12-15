@@ -30,16 +30,16 @@ public:
 
 	int getTime();
 
-	virtual int AddDmg(int dmg) ;
+	//virtual int AddDmg(int dmg) ;
 
-	virtual int getSlwns() ;
+//	virtual int getSlwns() ;
 	//Effect* eff
 	//eff.AddDmg(..);
 	//((Weak*)eff).AddDmg(..);
 
 	void setTime(int time);
 
-	~Effect();
+	//~Effect();
 };
 
 #endif

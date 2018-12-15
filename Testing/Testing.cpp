@@ -13,7 +13,7 @@
 TEST(testTemplateConstructor, InitFileConstructor3) {
 	EXPECT_EQ(1, 1);
 	EXPECT_TRUE(true);
-	STable<3> tmp("configTowers.txt");
+	STable<TableS,3> tmp("configTowers.txt");
 	int test = tmp.STable::getVal(0).cost;
 	EXPECT_EQ(test, 100);
 	test = tmp.STable::getVal(1).cost;
@@ -42,41 +42,24 @@ TEST(testTemplateConstructor, InitFileConstructor3) {
 	test = tmp.STable::getVal(2).rate;
 	EXPECT_EQ(test, 4);
 }
-TEST(testTemplateConstructor, InitFileConstructor2) {
-	EXPECT_EQ(1, 1);
-	EXPECT_TRUE(true);
-	STable<2> tmp("forTemplateTest2.txt");
-	int test = tmp.STable::getVal(0).cost;
-	EXPECT_EQ(test, 100);
-	test = tmp.STable::getVal(1).cost;
-	EXPECT_EQ(test, 150);
 
-
-	test = tmp.STable::getVal(0).dmg;
-	EXPECT_EQ(test, 25);
-	test = tmp.STable::getVal(1).dmg;
-	EXPECT_EQ(test, 40);
-
-
-	float test2 = tmp.STable::getVal(0).rad;
-	EXPECT_EQ(test2, 4.0);
-	test2 = tmp.STable::getVal(1).rad;
-	EXPECT_EQ(test2, 6.0);
-
-
-	test = tmp.STable::getVal(0).rate;
-	EXPECT_EQ(test, 8);
-	test = tmp.STable::getVal(1).rate;
-	EXPECT_EQ(test, 6);
-}
 
 TEST(testTemplateConstructor, ExceptionTest) {
 	EXPECT_EQ(1, 1);
 	EXPECT_TRUE(true);
-	STable<2> tmp("forTemplateTest2.txt");
+	STable<TableS,3> tmp("configTowers.txt");
 	int test = tmp.STable::getVal(0).cost;
 	EXPECT_EQ(test, 100);
 	ASSERT_THROW(tmp.STable::getVal(4), std::range_error);
+}
+TEST(testTemplateConstructor, InitFileConstructor2) {
+	EXPECT_EQ(1, 1);
+	EXPECT_TRUE(true);
+	STable<TableS, 3> tmp("configTowers.txt");
+	int test = tmp.STable::getVal(0).cost;
+	EXPECT_EQ(test, 100);
+
+	
 }
 //
 //TEST(testConstructor, DefaultConstructor1) {

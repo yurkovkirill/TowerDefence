@@ -8,7 +8,7 @@ class MTrap :public Weapon {
 protected:
 	int type;
 	Effect* tEffect;
-	STable<3>* Table;//included throw Landscape
+	STable<TableS,3>* Table;//included throw Landscape
 	//cost in weapon
 
 public:

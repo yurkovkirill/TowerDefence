@@ -110,6 +110,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="TableS.cpp" />
     <ClCompile Include="Tower.cpp" />
     <ClCompile Include="Weak.cpp" />
     <ClCompile Include="Weapon.cpp" />

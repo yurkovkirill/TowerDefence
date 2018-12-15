@@ -6,7 +6,7 @@ class Slow : public Effect {//1 eff
 private:
 	int eff[3];//lvl slwns
 public:
-	int getSlwns() override;
+	int getSlwns();// override;
 
 	//void setSlwns(int eff);
 

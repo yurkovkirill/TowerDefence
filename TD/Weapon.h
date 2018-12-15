@@ -33,9 +33,11 @@ public:
 
 	virtual Enemy* DetectEnemy();
 
-	int virtual Attack();// = 0;
+	//virtual int Attack();// = 0;
+
+	virtual void Turn() = 0;
 	
-	~Weapon();
+	//~Weapon();
 };
 
 #endif

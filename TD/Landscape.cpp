@@ -134,3 +134,8 @@ void Landscape::DrawMap(){
 
 	}
 }
+
+int Landscape::addenemy(Enemy* Enemyt){
+	Enemyout.push_back((*Enemyt));
+	return 1;
+}

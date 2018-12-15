@@ -27,7 +27,7 @@ Weapon::Weapon(Landscape* Landt, int xt, int yt, int lvlt, float radt, int costt
 	//
 }
 
-float dist(dot a, dot b){
+float dist1(dot a, dot b){
 	return (float)(sqrt((a.x - b.x)*(a.x - b.x) + (a.y - b.y)*(a.y - b.y)));
 }
 
@@ -40,7 +40,7 @@ Enemy* Weapon::DetectEnemy() {//сейчас дефолт стратегия - наиболее слабый
 	while (i < (*Enemyoutp).size()){
 		if (i >(*Enemyoutp).size())//если ушло за границы хз как 
 			break;
-		if (dist((*Enemyoutp)[i].getCor(), this->getCor()) <= rad){//попадает в радиус действия
+		if (dist1((*Enemyoutp)[i].getCor(), this->getCor()) <= rad){//попадает в радиус действия
 			if (Ew == nullptr)
 				Ew = &((*Enemyoutp)[i]);
 			else{

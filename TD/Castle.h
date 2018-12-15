@@ -33,7 +33,7 @@ public:
 
 	Castle(Landscape* Land1 , std::string fname ,int x , int y /*int hp0, int x, int y,int gold0*/);
 
-	void Turn() override;//вместо virtual void в cpp override не пишется
+	void Turn();// override;//вместо virtual void в cpp override не пишется
 
 	~Castle();// override = default;//делает виртуальный дефолтным
 

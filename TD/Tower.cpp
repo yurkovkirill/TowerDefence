@@ -25,13 +25,13 @@ int Tower::Attack(Enemy* Eat) {
 }
 
 Tower::Tower() : Weapon(), rate(4), dmg(25)  {
-	Table = new STable<3>("configTowers.txt");
+	Table = new STable<TableS,3>("configTowers.txt");
 	it = 0;
 }
 
 Tower::Tower(Landscape* Landt, int xt, int yt, int lvlt, const std::string &fname): Weapon(){//טח פאיכא
 	
-	Table = new STable<3>(fname);
+	Table = new STable<TableS,3>(fname);
 	lvl = lvlt;//from 0 to 2
 	rad = (*Table).getVal(lvl).rad;
 	cost = (*Table).getVal(lvl).cost;
@@ -44,7 +44,7 @@ Tower::Tower(Landscape* Landt, int xt, int yt, int lvlt, int dmgt, float radt, i
 	//
 	if ((lvlt < 0) && (lvlt>2))
 		throw std::exception("lvlt incorrect");
-	Table = new STable<3>("configTowers.txt");
+	Table = new STable<TableS,3>("configTowers.txt");
 	it = 0;
 }
 

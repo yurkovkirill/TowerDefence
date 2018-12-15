@@ -14,7 +14,7 @@ protected:
 	int dmg;
 
 public:
-	STable<3>* Table;
+	STable<TableS,3>* Table;
 
 private: 
 	void setDmg(int dmgt);

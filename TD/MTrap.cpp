@@ -16,7 +16,7 @@ MTrap::MTrap() : Weapon(), type(1) {
 }
 
 MTrap::MTrap(Landscape* Landt, int xt, int yt, int lvlt, int typet, const std::string &fname){
-	Table = new STable<3>(fname);
+	Table = new STable<TableS,3>(fname);
 	lvl = lvlt;//from 0 to 2
 	rad = (*Table).getVal(lvl).rad;
 	cost = (*Table).getVal(lvl).cost;

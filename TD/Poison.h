@@ -18,7 +18,7 @@ public:
 
 	Poison(int lvld);
 
-	int AddDmg(int dmg) override;//возвращает dmg+eff
+	int AddDmg(int dmg);// override;//возвращает dmg+eff
 
 	int getRate();
 	

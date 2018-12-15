@@ -14,7 +14,7 @@ public:
 
 	//float getWkns() override = default;
 
-	int AddDmg(int dmg) override;//возвращает dmg*eff
+	int AddDmg(int dmg);// override;//возвращает dmg*eff
 
 	~Weak();
 

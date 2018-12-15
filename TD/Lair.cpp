@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Lair.h"
+#include "Landscape.h"
 dot Lair::getCor() {
 	dot cor1 = Placeable::getCor();
 	return cor1;
