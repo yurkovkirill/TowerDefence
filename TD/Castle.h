@@ -15,14 +15,14 @@ private:
 	int gold;
 
 private:
-	int getHp();
-
 	void setHp(int hp);
 
 private:
 	void setGold(int gold);
 
 public:
+	int getHp();
+
 	int getGold();
 
 	void Hit(int dmg);

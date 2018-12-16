@@ -38,6 +38,12 @@ Landscape::Landscape(const std::string mfname){//setup like
 	}
 	
 }
+
+Landscape::~Landscape(){
+	for (int i = 0; i < height; i++)
+		delete[] Map[i];
+	delete[] Map;
+}
 std::vector<Enemy> * Landscape::getEnemies(){
 	return &(this->Enemyout);
 }
@@ -61,7 +67,7 @@ void Landscape::delEn(int enit) {//удаляется [enit]
 	Enemyout.erase(Enemyout.begin() + enit);
 }
 
-void Landscape::TurnL() {
+void Landscape::TurnL(int it) {
 	//1)сначала нужно пройтись по оружию
 	unsigned i = 0;
 	for (i = 0; i < Weapons.size(); i++)
@@ -78,6 +84,9 @@ void Landscape::TurnL() {
 		else
 			i++;
 	}
+	(*CastleL).Turn();
+	(*LairL).Turn(it);
+	std::cout << it << std::endl;
 }
 	//прорисовку не надо , это в Game и установка объектов там же
 int Landscape::BuildT(int x, int y){
@@ -143,11 +152,17 @@ void Landscape::DrawMap(){
 			std::cout << Map[i][j];
 		}
 		std::cout << std::endl;
-
 	}
 }
 
-int Landscape::addenemy(Enemy* Enemyt){
-	Enemyout.push_back((*Enemyt));
+void Landscape::WriteInfo(){
+	std::cout << "There are " << Enemyout.size() << " enemies " << std::endl;
+	std::cout << "There are " << Weapons.size() << " towers " << std::endl;
+	std::cout << "Castle HP = " << (*CastleL).getHp() << "  " << std::endl;
+}
+
+int Landscape::addenemy(Enemy Enemyt){
+	//Enemy Etmp = *Enemyt;
+	Enemyout.push_back(Enemyt);
 	return 1;
 }

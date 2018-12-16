@@ -12,11 +12,11 @@ public:
 
 	Weak(int lvld);
 
+	~Weak();
+
 	//float getWkns() override = default;
 
 	int AddDmg(int dmg);// override;//возвращает dmg*eff
-
-	~Weak();
 
 private:
 	

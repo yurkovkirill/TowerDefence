@@ -62,3 +62,7 @@ MTower::MTower(Landscape* Landt, int xt, int yt, int lvlt, int dmgt, float radt,
 	}
 	//может можно массивом указателей на классы?
 }
+
+MTower::~MTower(){
+	delete tEffect;
+}

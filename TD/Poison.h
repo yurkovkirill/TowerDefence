@@ -18,11 +18,11 @@ public:
 
 	Poison(int lvld);
 
+	~Poison();
+
 	int AddDmg(int dmg);// override;//возвращает dmg+eff
 
 	int getRate();
-	
-	~Poison();
 
 private:
 	void setRate(int rate);

@@ -19,4 +19,6 @@ Placeable::Placeable(Landscape* Land1, int int_posx , int int_posy) : Land(Land1
 	cor.y = int_posy;
 }
 
-
+Placeable::~Placeable(){
+	Land = nullptr;
+}

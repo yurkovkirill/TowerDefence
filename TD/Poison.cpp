@@ -37,6 +37,10 @@ Poison::Poison(int lvld) :Effect(2, lvld) {
 	eff[2] = 25;
 	rate = 2*(3- lvl);
 }
+
+Poison::~Poison(){
+	delete[] eff;
+}
 int Poison::AddDmg(int dmg){
 	int timet = this->getTime();
 	if (timet%rate == 0)

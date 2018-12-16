@@ -11,6 +11,10 @@ int Slow::getSlwns() {
 //	throw "Not yet implemented";
 //}
 
+Slow::~Slow(){
+	delete[] eff;
+}
+
 Slow::Slow():Effect(1,0) {
 	eff[0] = 2;
 	eff[1] = 3;

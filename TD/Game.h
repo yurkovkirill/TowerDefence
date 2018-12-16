@@ -15,6 +15,8 @@ public:
 	void TurnG();
 
 	Game();
+
+	~Game();
 };
 
 #endif

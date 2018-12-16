@@ -31,18 +31,16 @@ void Lair::setTactic(std::string fname){
 }
 
 void Lair::pushenemies() {
-	Enemy* Etmpo;
 	while (!Enemyin.empty()) {
-		Etmpo = &(Enemyin.front());
+		(*Land).addenemy((Enemyin.front()));
 		Enemyin.pop();
-		(*Land).addenemy(Etmpo);
 	}
 	//работа с очередью , обращаемс€ к landscape 
 }
 
 void Lair::setwave(int wavenum , int lvl) {
 	Enemy Etmp(lvl, "configEnemy.txt");
-	for (unsigned i = 0; i < SIZEW*(lvl+1)*wavenum; i++){
+	for (unsigned i = 0; i < wavenum; i++){
 		(Etmp).Enemy::setCor(Placeable::getCor());
 		(Etmp).Enemy::setPath(path);
 		Enemyin.push(Etmp);//создает копию в векторе
@@ -58,13 +56,13 @@ bool Lair::setpath(int startX, int startY, int targetX, int targetY) {
 	/// <param name="targetY"> оордината финиша Y</param>
 	{
 		bool stop = false;
-		int x, y, step = 0; 
+		int x, y, step = 0;
 		int MapWidth = (*Land).width;
 		int MapHeight = (*Land).height;
-		int** cMap = new int*[];
+		int** cMap = new int*[MapHeight];
 		int i;
 		for (i = 0; i < MapHeight; i++)
-			cMap[i] = new int[];
+			cMap[i] = new int[MapWidth];
 		char** Map = (*(*Land).getMap());
 
 		for (y = 0; y < MapHeight; y++)
@@ -79,7 +77,7 @@ bool Lair::setpath(int startX, int startY, int targetX, int targetY) {
 		cMap[targetY][targetX] = -1;
 		while (!stop == true)//пока еще есть непомеченные или не достигли финиша 
 		{
-			stop = true;
+			//stop = true;
 			for (y = 0; y < MapWidth; y++)
 				for (x = 0; x < MapHeight; x++)
 				{
@@ -101,7 +99,7 @@ bool Lair::setpath(int startX, int startY, int targetX, int targetY) {
 				stop = true;
 		}
 		// восстановление пути
-		int len = cMap[targetX][targetY];// длина кратчайшего пути из (ax, ay) в (bx, by)
+		int len = cMap[targetY][targetX];// длина кратчайшего пути из (ax, ay) в (bx, by)
 		x = targetX;
 		y = targetY;
 		int d = len;
@@ -166,7 +164,7 @@ Lair::Lair(Landscape* Land1, int x, int y) : Placeable(Land1, x, y) /*wave(1), l
 void Lair::Turn(int it) {
 	//1)тактика выпуска врагов
 	if (!Tactic.empty()){
-		if (Tactic[0].timetp >= it){
+		if (Tactic[0].timetp <= it){
 			setwave(Tactic[0].num, Tactic[0].lvl);
 			pushenemies();
 			Tactic.erase(Tactic.begin());

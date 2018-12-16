@@ -28,6 +28,8 @@ public:
 
 	Effect(int typed, int lvld);
 
+	~Effect();
+
 	int getTime();
 
 	//virtual int AddDmg(int dmg) ;

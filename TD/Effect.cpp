@@ -39,6 +39,10 @@ Effect::Effect(int typed,int lvld):type(typed),lvl(lvld) {
 	time = 0;
 }
 
+Effect::~Effect(){
+	delete[] time0;
+}
+
 int Effect::getTime() {
 	return this->time;
 }

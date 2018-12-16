@@ -48,6 +48,9 @@ Tower::Tower(Landscape* Landt, int xt, int yt, int lvlt, int dmgt, float radt, i
 	it = 0;
 }
 
+Tower::~Tower(){
+	delete Table;
+}
 void Tower::Turn() {
 	Enemy *Eat;
 	Eat = DetectEnemy();//1)Detect

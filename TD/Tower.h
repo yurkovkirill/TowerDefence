@@ -32,6 +32,8 @@ public:
 
 	Tower(Landscape* Landt, int xt, int yt, int lvlt, int dmgt, float radt, int ratet , int costt);
 
+	~Tower();
+
 	virtual void Turn();
 
 	int getRate();

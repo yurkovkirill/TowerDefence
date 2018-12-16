@@ -31,6 +31,9 @@ Weak::Weak(int lvld) :Effect(3, lvld) {
 
 }
 
+Weak::~Weak(){
+	delete[] eff;
+}
 //float Weak::getWkns() {
 //	return this->eff[lvl];
 //}

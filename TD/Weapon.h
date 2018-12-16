@@ -3,9 +3,8 @@
 
 #include "STable.h"
 #include "Placeable.h"
-extern class Enemy;
-extern class Landscape;
-
+ class Enemy;
+ class Landscape;
 class Weapon : public Placeable {
 
 protected:

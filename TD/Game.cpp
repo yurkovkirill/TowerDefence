@@ -20,6 +20,10 @@ Game::Game(): gameOver(false) {
 	//setup
 }
 
+Game::~Game(){
+	delete Land;
+}
+
 
 //int main{
 //	Game();

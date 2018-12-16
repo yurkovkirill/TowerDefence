@@ -21,6 +21,8 @@ public:
 
 	Placeable(Landscape* Land1 , int int_posx , int int_posy);
 
+	~Placeable();
+
 	void SetLand(Landscape* Land1){ this->Land = Land1; };
 
 	//virtual void Turn();// = 0; //то же что и внизу , но просто placeable мы теперь не может создать

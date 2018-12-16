@@ -23,10 +23,11 @@ private:
 
 public:
 	int height; int width;
-	void TurnL(); //death of enemyout here
+	void TurnL(int it); //death of enemyout here
 	Landscape();
 	Landscape(const std::string mfname);
-	int addenemy(Enemy*);//
+	~Landscape();
+	int addenemy(Enemy);//
 	std::vector<Enemy> *getEnemies();//*==& он может меняться в Lair e.g.
 	char*** getMap();
 	dot getCcor();
@@ -39,7 +40,7 @@ public:
 	int BuildMTrap(int x, int y);
 
 	void DrawMap();
-
+	void WriteInfo();
 };
 
 #endif

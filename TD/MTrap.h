@@ -2,7 +2,7 @@
 #define MTRAP_H
 #include "Weapon.h"
 //#include "STable.h"
-extern class Effect;
+ class Effect;
 class MTrap :public Weapon {
 
 protected:
