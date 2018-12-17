@@ -29,7 +29,7 @@ Tower::Tower() : Weapon(), rate(4), dmg(25)  {
 	it = 0;
 }
 
-Tower::Tower(Landscape* Landt, int xt, int yt, int lvlt, const std::string &fname): Weapon(){//טח פאיכא
+Tower::Tower(Landscape* Landt, int xt, int yt, int lvlt, const std::string &fname) : Weapon(Landt, xt, yt, lvlt){//טח פאיכא
 	
 	Table = new STable<TableS,3>(fname);
 	lvl = lvlt;//from 0 to 2

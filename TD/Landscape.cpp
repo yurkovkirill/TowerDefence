@@ -90,12 +90,12 @@ void Landscape::TurnL(int it) {
 }
 	//прорисовку не надо , это в Game и установка объектов там же
 int Landscape::BuildT(int x, int y){
-	int Tcost = 100;//подгрузить из файла можно @ а можно сначала создавать , потом чекать
+	int Tcost = 100;//подгрузить из файла можно @ а можно сначала создавать , потом чекать CT
 	if ((*CastleL).getGold() < Tcost)
 		return 0;
 	else
 	{
-		if (Map[x][y] == '.'){
+		if (Map[y][x] == '.'){//CT
 			Weapon* Etmp = new Tower(this, x, y, 0, "configTowers.txt");
 			Weapons.push_back(Etmp);//тут же копируется Etmp , верно(?)
 			Etmp = nullptr;
@@ -111,13 +111,13 @@ int Landscape::upgradeT(int wi){//weapon i
 }
 
 int Landscape::BuildMT(int x, int y){
-	int Tcost = 150;//подгрузить из файла можно @ а можно сначала создавать , потом чекать
+	int Tcost = 150;//подгрузить из файла можно @ а можно сначала создавать , потом чекать CT
 	if ((*CastleL).getGold() < Tcost)
 		return 0;
 	else
 	{
-		if (Map[x][y] == '.'){
-			Weapon* Etmp = new MTower(this, x, y, 0, 1,  "configSTable.txt");//Slow=1
+		if (Map[y][x] == '.'){
+			Weapon* Etmp = new MTower(this, x, y, 0, 1,  "configTowers.txt");//Slow=1
 			Weapons.push_back(Etmp);
 			Etmp = nullptr;
 		}
@@ -134,7 +134,7 @@ int Landscape::BuildMTrap(int x, int y){
 		return 0;
 	else
 	{
-		if (Map[x][y] == '.'){
+		if (Map[y][x] == '.'){
 			Weapon* Etmp = new MTrap(this, x, y, 0, 1, "configMTrap.txt");//Slow == 1
 			Weapons.push_back(Etmp);
 			Etmp = nullptr;
@@ -165,4 +165,12 @@ int Landscape::addenemy(Enemy Enemyt){
 	//Enemy Etmp = *Enemyt;
 	Enemyout.push_back(Enemyt);
 	return 1;
+}
+
+bool Landscape::getGameOver(){
+	return ((*CastleL).getHp() <= 0);
+}
+
+bool Landscape::wonLvl(){
+	return (Enemyout.size() == 0 && (*LairL).NoMoreEnemies());
 }

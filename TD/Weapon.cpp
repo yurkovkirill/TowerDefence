@@ -2,7 +2,7 @@
 #include "Weapon.h"
 #include "Landscape.h"
 //#include <vector>
-
+#include <iostream>
 int Weapon::getLvl() {
 	return this->lvl;
 }
@@ -23,7 +23,11 @@ Weapon::Weapon() :Placeable(), lvl(0), rad(4.0), it(0), cost(100) {//dot=? подум
 	//
 }
 
-Weapon::Weapon(Landscape* Landt, int xt, int yt, int lvlt, float radt, int costt) : Placeable(Landt, xt, xt), lvl(lvlt), rad(radt), it(0), cost(costt){
+Weapon::Weapon(Landscape* Landt, int xt, int yt, int lvlt) : Placeable(Landt, xt, yt), lvl(lvlt){
+	//
+}
+
+Weapon::Weapon(Landscape* Landt, int xt, int yt, int lvlt, float radt, int costt) : Placeable(Landt, xt, yt), lvl(lvlt), rad(radt), it(0), cost(costt){
 	//
 }
 
@@ -40,6 +44,8 @@ Enemy* Weapon::DetectEnemy() {//сейчас дефолт стратегия - наиболее слабый
 	while (i < (*Enemyoutp).size()){
 		if (i >(*Enemyoutp).size())//если ушло за границы хз как 
 			break;
+		if ((*Enemyoutp)[0].getCor().x == 9)
+			std::cout << (*Enemyoutp)[0].getCor().x << ' ' << std::endl;
 		if (dist1((*Enemyoutp)[i].getCor(), this->getCor()) <= rad){//попадает в радиус действия
 			if (Ew == nullptr)
 				Ew = &((*Enemyoutp)[i]);

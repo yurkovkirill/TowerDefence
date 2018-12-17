@@ -42,7 +42,7 @@ public:
 
 	void setPath(std::queue<dot> path);
 
-	void addEff(Effect* Eftmp);
+	int addEff(Effect* Eftmp);
 
 	void delEff(int effit);
 

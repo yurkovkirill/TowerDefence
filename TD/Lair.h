@@ -41,6 +41,8 @@ public:
 	Lair(Landscape* Land1 , int x, int y);
 
 	void Turn(int it);//it == время всей игры 
+
+	bool NoMoreEnemies();
 };
 
 #endif

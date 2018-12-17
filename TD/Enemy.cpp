@@ -30,11 +30,29 @@ void Enemy::setPath(std::queue<dot> path) {
 	this->path = path;
 }
 
-void Enemy::addEff(Effect* Eftmp) {
+int Enemy::addEff(Effect* Eftmp) {//0 = new , 1 = added , 2 = reload
 	int typetmp = (*Eftmp).Effect::getType();
-	if ((*Effects[typetmp]).getLvl() > (*Eftmp).getLvl()){///
-		Effects[typetmp] = (Eftmp);///
+	if (!(Effects).empty()){
+		for (int i = 0; i<Effects.size();i++)
+			if ((*Effects[i]).getLvl() == (*Eftmp).getLvl())
+				if ((*Effects[i]).getType() == (*Eftmp).getType()) // if same effect with same lvl but lower time change it
+					if ((*Effects[i]).getTime() < (*Eftmp).getTime()){///CT
+						Effect* tmp = Effects[i];
+						Effects[i] = (Eftmp);
+						delete tmp;
+						return 2;
+					}
+		Effects.push_back(Eftmp);
+		return 1;
+			
 	}
+	else 
+		Effects.push_back(Eftmp);
+	return 0;
+
+	/*if ((*Effects[typetmp]).getLvl() > (*Eftmp).getLvl()){///CT
+		Effects[typetmp] = (Eftmp);///
+	}*/
 }
 
 void Enemy::delEff(int effit) {//удаляется [effit]

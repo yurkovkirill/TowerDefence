@@ -2,17 +2,25 @@
 #define GAME_H
 #include "Landscape.h"
 class Game {
-	bool gameOver;
 private:
+	bool gameOver;
+	bool wonLvl;
 	Landscape* Land;//по сути можно без указателя
 
 public:
+	bool getgameOver();
+
+	bool getwonLvl();
+
+	bool checkStatus();
 
 	void Setup();/*std::string mfname*/
 
 	void DrawAll();
 
-	void TurnG();
+	void TurnG(int);
+
+	int InputK(char);
 
 	Game();
 

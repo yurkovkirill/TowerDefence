@@ -4,6 +4,7 @@
 
 int MTower::Attack(Enemy* Eat) {
 	if (Eat == nullptr){
+		it++;
 		return 0;
 	}
 	if (it >= rate){//пора стрелять

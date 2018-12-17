@@ -15,7 +15,7 @@ MTrap::MTrap() : Weapon(), type(1) {
 	tEffect = new Slow(1); //tEffect = nullptr; у ловушки сразу повышенный лвл !!!!!!!!!!!1 лвл на 0 у всех как начальный!!!!!!!!!!!
 }
 
-MTrap::MTrap(Landscape* Landt, int xt, int yt, int lvlt, int typet, const std::string &fname){
+MTrap::MTrap(Landscape* Landt, int xt, int yt, int lvlt, int typet, const std::string &fname) : Weapon(Landt, xt, yt, lvlt){
 	Table = new STable<TableS,3>(fname);
 	lvl = lvlt;//from 0 to 2
 	rad = (*Table).getVal(lvl).rad;

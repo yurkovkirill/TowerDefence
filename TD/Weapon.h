@@ -28,6 +28,8 @@ public:
 
 	Weapon();
 
+	Weapon(Landscape* Landt, int xt, int yt, int lvlt);
+
 	Weapon(Landscape* Landt, int xt, int yt, int lvlt, float radt , int costt);
 
 	virtual Enemy* DetectEnemy();

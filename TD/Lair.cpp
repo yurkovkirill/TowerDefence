@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Lair.h"
 #include "Landscape.h"
+#include "iostream"
 dot Lair::getCor() {
 	dot cor1 = Placeable::getCor();
 	return cor1;
@@ -99,24 +100,36 @@ bool Lair::setpath(int startX, int startY, int targetX, int targetY) {
 				stop = true;
 		}
 		// восстановление пути
+		/////////////////////////////////////////////////////////////
+		/*for (int i = 0; i < MapHeight; i++){
+			for (int j = 0; j < MapWidth; j++){
+				std::cout << cMap[i][j];
+			}
+			std::cout << std::endl;
+		}
+		system("pause");*/ //PrT
+		/////////////////////////////////////////////////////////////
 		int len = cMap[targetY][targetX];// длина кратчайшего пути из (ax, ay) в (bx, by)
-		x = targetX;
-		y = targetY;
-		int d = len;
+		x = startX;// targetX;
+		y = startY;// targetY;
+		int d = 0;
 		dot patht;
-		while (d > 0)
+		while (d < len+1)
 		{
 			patht.x = x;
-			patht.y = y;
+			patht.y = y; 
+			/*std::cout << "d = " << d << std::endl;
+			std::cout << x << " " << y << std::endl;
+			system("pause");	*///PrT
 			path.push(patht);// записываем €чейку (x, y) в путь
-			d--;
+			d++;
 			int iy; int ix;
 			for (i = 0; i < 4; ++i)
 			{
-				if (i == 0){ iy = y + 1; ix = x + 1; }
-				if (i == 1){ iy = y - 1; ix = x + 1; }
-				if (i == 2){ iy = y + 1; ix = x - 1; }
-				if (i == 3){ iy = y - 1; ix = x - 1; }
+				if (i == 0){ iy = y; ix = x + 1; }
+				if (i == 1){ iy = y; ix = x - 1; }
+				if (i == 2){ iy = y + 1; ix = x; }
+				if (i == 3){ iy = y - 1; ix = x; }
 
 				if (iy >= 0 && iy < MapHeight && ix >= 0 && ix < MapWidth && cMap[iy][ix] == d)
 				{
@@ -170,4 +183,8 @@ void Lair::Turn(int it) {
 			Tactic.erase(Tactic.begin());
 		}
 	}
+}
+
+bool Lair::NoMoreEnemies(){
+	return (Enemyin.size() == 0 && Tactic.size() == 0);
 }

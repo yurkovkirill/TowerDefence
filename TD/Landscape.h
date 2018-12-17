@@ -41,6 +41,9 @@ public:
 
 	void DrawMap();
 	void WriteInfo();
+
+	bool getGameOver();
+	bool wonLvl();
 };
 
 #endif
