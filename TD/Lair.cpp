@@ -178,6 +178,8 @@ void Lair::Turn(int it) {
 	//1)тактика выпуска врагов
 	if (!Tactic.empty()){
 		if (Tactic[0].timetp <= it){
+			/*if (it == 160)
+				std::cout << std::endl;*/ //it was for PrT (check)
 			setwave(Tactic[0].num, Tactic[0].lvl);
 			pushenemies();
 			Tactic.erase(Tactic.begin());

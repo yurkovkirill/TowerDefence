@@ -56,6 +56,10 @@ public:
 
 	Enemy(int lvl, std::string fname);
 
+	Enemy(const Enemy &);
+
+	Enemy(Enemy &&);
+
 	~Enemy();
 
 	void Turn();

@@ -99,6 +99,23 @@ Enemy::Enemy() {
 	cor.y = SIZEL - 4;
 }
 
+Enemy::Enemy(const Enemy &b) : it(b.it) , Isdead(b.Isdead) , hp(b.hp) , cor(b.cor) , speed(b.speed) , path(b.path) , slwns(b.slwns)  {
+	Effect* tmp = new Effect;
+	for (int i = 0; i < b.Effects.size(); i++){
+		(*tmp) = (*(b.Effects[i]));
+		this->Effects.push_back(tmp);
+	}
+	tmp = nullptr;
+	
+}
+
+Enemy::Enemy(Enemy &&b) : it(b.it), Isdead(b.Isdead), hp(b.hp), cor(b.cor), speed(b.speed), path(b.path), slwns(b.slwns)  {
+	for (int i = 0; i < b.Effects.size(); i++){
+		this->Effects.push_back(b.Effects[i]);
+		b.Effects[i] = nullptr;
+	}
+}
+
 Enemy::Enemy(int lvl , std::string fname) {
 
 	int ks;
