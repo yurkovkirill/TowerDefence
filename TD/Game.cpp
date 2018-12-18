@@ -12,6 +12,10 @@ bool Game::getwonLvl(){
 	return this->wonLvl;
 }
 
+Landscape* Game::getLand(){
+	return this->Land;
+}
+
 bool Game::checkStatus(){
 	if (gameOver){
 		cout << "GAME OVER" << endl;

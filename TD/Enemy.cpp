@@ -33,7 +33,7 @@ void Enemy::setPath(std::queue<dot> path) {
 int Enemy::addEff(Effect* Eftmp) {//0 = new , 1 = added , 2 = reload
 	int typetmp = (*Eftmp).Effect::getType();
 	if (!(Effects).empty()){
-		for (int i = 0; i<Effects.size();i++)
+		for (unsigned i = 0; i<Effects.size();i++)
 			if ((*Effects[i]).getLvl() == (*Eftmp).getLvl())
 				if ((*Effects[i]).getType() == (*Eftmp).getType()) // if same effect with same lvl but lower time change it
 					if ((*Effects[i]).getTime() < (*Eftmp).getTime()){///CT
@@ -101,7 +101,7 @@ Enemy::Enemy() {
 
 Enemy::Enemy(const Enemy &b) : it(b.it) , Isdead(b.Isdead) , hp(b.hp) , cor(b.cor) , speed(b.speed) , path(b.path) , slwns(b.slwns)  {
 	Effect* tmp = new Effect;
-	for (int i = 0; i < b.Effects.size(); i++){
+	for (unsigned i = 0; i < b.Effects.size(); i++){
 		(*tmp) = (*(b.Effects[i]));
 		this->Effects.push_back(tmp);
 	}
@@ -110,7 +110,7 @@ Enemy::Enemy(const Enemy &b) : it(b.it) , Isdead(b.Isdead) , hp(b.hp) , cor(b.co
 }
 
 Enemy::Enemy(Enemy &&b) : it(b.it), Isdead(b.Isdead), hp(b.hp), cor(b.cor), speed(b.speed), path(b.path), slwns(b.slwns)  {
-	for (int i = 0; i < b.Effects.size(); i++){
+	for (unsigned i = 0; i < b.Effects.size(); i++){
 		this->Effects.push_back(b.Effects[i]);
 		b.Effects[i] = nullptr;
 	}

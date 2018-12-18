@@ -35,7 +35,7 @@ public:
 
 	void Turn();// override;//вместо virtual void в cpp override не пишется
 
-	~Castle();// override = default;//делает виртуальный дефолтным
+	//~Castle();// override = default;//делает виртуальный дефолтным
 
 };
 

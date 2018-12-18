@@ -41,7 +41,7 @@ void Lair::pushenemies() {
 
 void Lair::setwave(int wavenum , int lvl) {
 	Enemy Etmp(lvl, "configEnemy.txt");
-	for (unsigned i = 0; i < wavenum; i++){
+	for (int i = 0; i < wavenum; i++){
 		(Etmp).Enemy::setCor(Placeable::getCor());
 		(Etmp).Enemy::setPath(path);
 		Enemyin.push(Etmp);//создает копию в векторе

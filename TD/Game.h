@@ -12,6 +12,8 @@ public:
 
 	bool getwonLvl();
 
+	Landscape* getLand();
+
 	bool checkStatus();
 
 	void Setup();/*std::string mfname*/

@@ -26,7 +26,10 @@ public:
 	void TurnL(int it); //death of enemyout here
 	Landscape();
 	Landscape(const std::string mfname);
+	Landscape(const Landscape &b);
+	Landscape(Landscape &&b);
 	~Landscape();
+
 	int addenemy(Enemy);//
 	std::vector<Enemy> *getEnemies();//*==& он может меняться в Lair e.g.
 	char*** getMap();

@@ -2,8 +2,9 @@
 //
 #include "stdafx.h"
 #include "..\TD\Game.h"
+#include "..\TD\Graphics.h"
 #include <iostream>
-
+#include <SFML/Graphics.hpp>
 using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -17,18 +18,77 @@ int _tmain(int argc, _TCHAR* argv[])
 	cout << "Welcome!" << endl;
 	char buf;
 	bool flagBreak;
-
 	Game G;
+	Graphics Graph(&G);
+
+
+	RenderWindow window(sf::VideoMode(640, 480), "ForsenE");
+	window.setVerticalSyncEnabled(true); // call it once, after creating the window
+	
 	int i = 0;
+	while (i++ < 1000){
+		G.TurnG(i);
+		if (window.isOpen())
+		{
+			sf::Event event;
+			while (window.pollEvent(event))
+			{
+				if (event.type == sf::Event::Closed)
+					window.close();
+			}
+
+			window.clear();
+			//window.setActive(false);
+			(*Graph.MapG).Draw(window);
+			(*Graph.GEnemiesG).Draw(window);
+			window.display();
+		}
+		if (G.checkStatus())
+			break;
+	}
+	system("pause");
+	while (window.isOpen())
+	{
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
+
+		window.clear();
+		//window.setActive(false);
+		(*Graph.MapG).Draw(window);
+		(*Graph.GEnemiesG).Draw(window);
+		window.display();
+	}
+	system("pause");
+	
+	/*int i = 0;
 	G.InputK('T');
 	while (i++ < 1000){
 		G.TurnG(i);
 		if (G.checkStatus())
 			break;
 	}
-	G.DrawAll();
+	G.DrawAll();*/
+
+
+
+
+
 
 	//system("cls");
+
+
+
+
+
+
+
+
+
+
 
 
 //	//Loading

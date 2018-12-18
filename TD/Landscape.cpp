@@ -39,10 +39,55 @@ Landscape::Landscape(const std::string mfname){//setup like
 	
 }
 
+//constructors
+Landscape::Landscape(const Landscape &b) : height(b.height), width(b.width) , Enemyout(b.Enemyout)  {
+	Weapon* tmp = new MTower;//все равно онли для удаления PrT CT
+	for (unsigned i = 0; i < b.Weapons.size(); i++){
+		(*tmp) = (*(b.Weapons[i]));
+		this->Weapons.push_back(tmp);
+	}
+	tmp = nullptr;
+	Lair* tmp2 = new Lair;
+	(*tmp2) = (*(b.LairL));
+	this->LairL = tmp2;
+	Castle* tmp3 = new Castle;
+	(*tmp3) = (*(b.CastleL));
+	this->CastleL = tmp3;
+	tmp2 = nullptr;
+	tmp3 = nullptr;
+	for (int i = 0; i < height; i++)
+		for (int j = 0; j < width; j++)
+		{
+			Map[i][j] = b.Map[i][j];
+		}
+	
+}
+
+Landscape::Landscape(Landscape &&b) : height(b.height), width(b.width)   {
+	for (unsigned i = 0; i < b.Weapons.size(); i++){
+		this->Weapons.push_back(b.Weapons[i]);
+		b.Weapons[i] = nullptr;
+	}
+	LairL = b.LairL;
+	CastleL = b.CastleL;
+	b.CastleL = nullptr;
+	b.LairL = nullptr;
+	Map = b.Map;
+	b.Map = nullptr;
+	
+}
+
 Landscape::~Landscape(){
 	for (int i = 0; i < height; i++)
 		delete[] Map[i];
 	delete[] Map;
+	delete CastleL;
+	delete LairL;
+	for (auto i : Weapons)
+	{
+		delete i;
+	}
+	Weapons.clear();
 }
 std::vector<Enemy> * Landscape::getEnemies(){
 	return &(this->Enemyout);
@@ -174,3 +219,6 @@ bool Landscape::getGameOver(){
 bool Landscape::wonLvl(){
 	return (Enemyout.size() == 0 && (*LairL).NoMoreEnemies());
 }
+
+
+

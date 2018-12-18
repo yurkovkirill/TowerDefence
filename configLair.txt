@@ -1,7 +1,7 @@
-Tactic[0].num = 3
+Tactic[0].num = 1
 Tactic[0].timetp = 80
 Tactic[0].lvl = 0
-Tactic[1].num = 6
+Tactic[1].num = 1
 Tactic[1].timetp = 160
 Tactic[1].lvl = 0
 Tactic[2].num = 9

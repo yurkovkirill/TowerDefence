@@ -45,13 +45,20 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SFML_DYNAMIC;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalIncludeDirectories>C:\Users\natasha\source\repos\SFML-2.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalDependencies>sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>C:\Users\natasha\source\repos\SFML-2.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -78,8 +85,11 @@
     <ClInclude Include="Effect.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GEnemies.h" />
+    <ClInclude Include="Graphics.h" />
     <ClInclude Include="Lair.h" />
     <ClInclude Include="Landscape.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="MTower.h" />
     <ClInclude Include="MTrap.h" />
     <ClInclude Include="Placeable.h" />
@@ -99,8 +109,11 @@
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GEnemies.cpp" />
+    <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Lair.cpp" />
     <ClCompile Include="Landscape.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="MTower.cpp" />
     <ClCompile Include="MTrap.cpp" />
     <ClCompile Include="Placeable.cpp" />
