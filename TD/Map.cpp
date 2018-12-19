@@ -104,10 +104,10 @@ int Map::Draw(RenderWindow &Mwindow){
 			//circle
 			float rad = (*(*Weapons)[i]).getRad();
 			sf::CircleShape shape( rad* 32);
-			shape.setFillColor(sf::Color::White);
+			shape.setFillColor(sf::Color(255, 255, 255, 128)); //sf::Color::Transparent sf::Color(255, 255, 255, 128)
 			// set a 3-pixel wide orange outline
 			shape.setOutlineThickness(3);
-			shape.setOutlineColor(sf::Color(250, 150, 100));
+			shape.setOutlineColor(sf::Color(100, 150, 100));
 			//shape.createMaskFromColor(Color(255, 255, 255));
 			shape.setPosition(cor.x * 32 - rad * 32 + 16, cor.y * 32 - rad * 32 + 16);
 			Mwindow.draw(shape);

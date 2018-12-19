@@ -6,6 +6,8 @@
 #include <iostream>
 #include <sstream>
 #include <SFML/Graphics.hpp>
+#include <thread>
+#include <chrono>
 using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -35,6 +37,9 @@ int _tmain(int argc, _TCHAR* argv[])
 	text.setColor(Color::White);//покрасили текст в красный. если убрать эту строку, то по умолчанию он белый
 	text.setStyle(Text::Bold);//жирный текст.
 
+	bool isMove = false;//переменная для щелчка мыши по спрайту
+	float dX = 0;//корректировка движения по х
+	float dY = 0;//по у
 
 	int i = 0;
 	while (1){
@@ -43,11 +48,16 @@ int _tmain(int argc, _TCHAR* argv[])
 		float time = clock.getElapsedTime().asMilliseconds();//получаем истекшее время clock с момента рестарта в микросекундах
 		gameTime = gameTimeClock.getElapsedTime().asSeconds(); //игровое время в секундах идёт вперед , перезагружать как time его не надо. оно не обновляет логику игры
 
-		if (time > 10){//каждая итерация логики игры
-			clock.restart();
-			G.TurnG(i);
-			i++;
+		if (time < 10)
+		{
+			std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(std::round(10 - time))));
 		}
+
+		//if (time > 10){//каждая итерация логики игры
+		clock.restart();
+		G.TurnG(i);
+		i++;
+		//}
 
 		std::cout << i << std::endl;
 		G.DrawAll();
@@ -68,9 +78,46 @@ int _tmain(int argc, _TCHAR* argv[])
 					window.close();
 			}
 			window.clear();
+
+			//for (i = 0; i < (*Graph.Land).height; i++)
+			//	for (int j = 0; j < (*Graph.Land).width; j++){
+			//		(*Graph.Land)
+			//	}
+			//
+			//
+			///// clickofmouse
+			//Vector2i pixelPos = Mouse::getPosition(window);//забираем коорд курсора
+			//Vector2f pos = window.mapPixelToCoords(pixelPos);//переводим их в игровые (уходим от коорд окна)
+			//if (event.type == Event::MouseButtonPressed)//если нажата клавиша мыши
+			//	if (event.key.code == Mouse::Left)//а именно левая
+			//		if (p.sprite.getGlobalBounds().contains(pos.x, pos.y))//и при этом координата курсора попадает в спрайт
+			//		{
+			//			std::cout << "isClicked!\n";//выводим в консоль сообщение об этом
+			//			dX = pos.x - p.sprite.getPosition().x;//делаем разность между позицией курсора и спрайта.для корректировки нажатия
+			//			dY = pos.y - p.sprite.getPosition().y;//тоже самое по игреку
+			//			isMove = true;//можем двигать спрайт							
+			//		}
+			//if (event.type == Event::MouseButtonReleased)//если отпустили клавишу
+			//	if (event.key.code == Mouse::Left) //а именно левую
+			//		isMove = false; //то не можем двигать спрайт
+			//p.sprite.setColor(Color::White);//и даем ему прежний цвет
+			//}
+			//if (isMove) {//если можем двигать
+			//p.sprite.setColor(Color::Green);//красим спрайт в зеленый 
+			//p.x = pos.x - dX;//двигаем спрайт по Х
+			//p.y = pos.y - dY;//двигаем по Y
+			////p.sprite.setPosition(pos.x - dX, pos.y - dY);//можно и так написать,если у вас нету х и у
+			//}
+			///// clickofmouse
+
+
+			
 			//window.setActive(false);
+
+			/// graphics
 			(*Graph.MapG).Draw(window);
 			(*Graph.GEnemiesG).Draw(window);
+			/// graphics
 
 			/// text
 			std::ostringstream  gameTimeString;    // объявили переменную времени
@@ -84,22 +131,23 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 	}
 	system("pause");
-	
-	/*int i = 0;
-	G.InputK('T');
-	while (i++ < 1000){
-		G.TurnG(i);
-		if (G.checkStatus())
-			break;
-	}
-	G.DrawAll();*/
+	return 0;
+}
 
 
 
 
 
 
-	//system("cls");
+
+
+
+
+
+
+
+
+
 
 
 
@@ -322,9 +370,3 @@ int _tmain(int argc, _TCHAR* argv[])
 //
 //	}
 //}
-
-
-
-	return 0;
-}
-

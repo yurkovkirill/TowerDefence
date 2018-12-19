@@ -166,7 +166,7 @@ int Landscape::BuildMT(int x, int y){
 	else
 	{
 		if (Map[y][x] == '.'){
-			Weapon* Etmp = new MTower(this, x, y, 0, 3,  "configTowers.txt");//Slow=1
+			Weapon* Etmp = new MTower(this, x, y, 0, 1,  "configTowers.txt");//Slow=1
 			Weapons.push_back(Etmp);
 			Etmp = nullptr;
 		}
