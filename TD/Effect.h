@@ -7,7 +7,6 @@ protected:
 	int type;
 	int lvl;
 	/*static const!!что -то не вышло нормально сделать*/ int time0[3];//3lvls time0
-private:
 	int time;
 
 protected:

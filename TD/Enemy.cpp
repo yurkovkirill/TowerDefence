@@ -30,24 +30,44 @@ void Enemy::setPath(std::queue<dot> path) {
 	this->path = path;
 }
 
-int Enemy::addEff(Effect* Eftmp) {//0 = new , 1 = added , 2 = reload
+int Enemy::addEff(Effect* Eftmp) {//0 = new , 1 = added , 2 = reload , 3 = do nothing , have stronger 
 	int typetmp = (*Eftmp).Effect::getType();
+	Effect* tmp = nullptr;
 	if (!(Effects).empty()){
-		for (unsigned i = 0; i<Effects.size();i++)
+		for (unsigned i = 0; i < Effects.size(); i++){
 			if ((*Effects[i]).getLvl() == (*Eftmp).getLvl())
-				if ((*Effects[i]).getType() == (*Eftmp).getType()) // if same effect with same lvl but lower time change it
-					if ((*Effects[i]).getTime() < (*Eftmp).getTime()){///CT
-						Effect* tmp = Effects[i];
-						Effects[i] = (Eftmp);
-						delete tmp;
+				if ((*Effects[i]).getType() == (*Eftmp).getType())
+					if ((*Effects[i]).getTime() >(*Eftmp).getTime()){///CT  // if same effect with same lvl but lower time change it
+						(*Effects[i]).setTime((*Eftmp).getTime());
 						return 2;
 					}
-		Effects.push_back(Eftmp);
+					else
+						return 3;
+		}
+		if (typetmp == 1){
+			tmp = new Slow(*(Slow*)Eftmp);
+		}
+		if (typetmp == 2){
+			tmp = new Poison(*(Poison*)Eftmp);
+		}
+		if (typetmp == 3){
+			tmp = new Weak(*(Weak*)Eftmp);
+		}
+		Effects.push_back(tmp);
 		return 1;
 			
 	}
 	else 
-		Effects.push_back(Eftmp);
+		if (typetmp == 1){
+			tmp = new Slow(*(Slow*)Eftmp);
+		}
+		if (typetmp == 2){
+		tmp = new Poison(*(Poison*)Eftmp);
+		}
+		if (typetmp == 3){
+			tmp = new Weak(*(Weak*)Eftmp);
+		}
+		Effects.push_back(tmp);
 	return 0;
 
 	/*if ((*Effects[typetmp]).getLvl() > (*Eftmp).getLvl()){///CT
@@ -82,9 +102,15 @@ void Enemy::gonext() {
 }
 
 void Enemy::getslwns(){
+	slwns = 1;
 	for (unsigned i = 0; i < Effects.size(); i++)
-		if ((*Effects[i]).Effect::getType() == 1)
-			slwns *= (*((Slow*)Effects[i])).Slow::getSlwns(/*((*Effects[i]).Effect::getLvl())*/);//
+		if ((*Effects[i]).Effect::getType() == 1){
+			slwns *= (*((Slow*)Effects[i])).Slow::getSlwns();
+		}
+}
+
+int Enemy::getSlowValue(){
+	return this->slwns;
 }
 
 Enemy::Enemy() {
@@ -128,7 +154,7 @@ Enemy::Enemy(int lvl , std::string fname) {
 	}
 	it = 0;
 	Isdead = 0;
-	speed = ks * (3 - lvl);//
+	speed = ks * (3 - lvl);//CT
 	hp = khp * (lvl+1);//
 	slwns = 1;
 	//path = nullptr;
@@ -149,6 +175,7 @@ Enemy::~Enemy(){
 }
 void Enemy::Turn(){
 	it++;
+	getslwns();
 	if (it >= speed*slwns)//1)продвижение 
 		gonext();
 	it %= speed*slwns; //при избавлении от эффекта обновить итератор

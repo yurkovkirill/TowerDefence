@@ -11,8 +11,30 @@ int Slow::getSlwns() {
 //	throw "Not yet implemented";
 //}
 
+Slow::Slow(const Slow &b) {
+	type = (b.type);
+	lvl = (b.lvl);
+	time = (b.time);
+	for (int i = 0; i < 2; i++){
+		eff[i] = b.eff[i];
+		time0[i] = b.time0[i];
+	}
+
+
+}
+
+Slow::Slow(Slow &&b)  {
+	type = (b.type);
+	lvl = (b.lvl);
+	time = (b.time);
+	for (int i = 0; i < 2; i++){
+		eff[i] = b.eff[i];
+		time0[i] = b.time0[i];
+	}
+}
+
 Slow::~Slow(){
-	delete[] eff;
+	//delete[] eff;
 }
 
 Slow::Slow():Effect(1,0) {

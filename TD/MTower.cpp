@@ -8,8 +8,8 @@ int MTower::Attack(Enemy* Eat) {
 		return 0;
 	}
 	if (it >= rate){//пора стрелять
-		it++;
 		it %= rate;
+		it++;
 		(*Eat).getHit(this->dmg);
 		(*Eat).addEff(this->tEffect);//tEffect не может быть nullptr
 	}

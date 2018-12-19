@@ -6,7 +6,7 @@
 
 Graphics::Graphics(Game* Gamet) : Land((*Gamet).getLand())
 {
-	MapG = new Map(Land);
+	MapG = new Map(Land,this);
 	GEnemiesG = new GEnemies(Land);
 }
 

@@ -8,7 +8,7 @@ Weak::Weak() :Effect(3, 1) {
 	eff[2] = eff[0] * 4;
 }
 
-Weak::Weak(int lvld, const std::string &fname) :Effect(1, lvld){
+Weak::Weak(int lvld, const std::string &fname) :Effect(3, lvld){
 	std::ifstream fs("../" + fname);
 	if (fs.is_open())
 	{
@@ -31,8 +31,30 @@ Weak::Weak(int lvld) :Effect(3, lvld) {
 
 }
 
+Weak::Weak(const Weak &b) {
+	type = (b.type);
+	lvl = (b.lvl);
+	time = (b.time);
+	for (int i = 0; i < 2; i++){
+		eff[i] = b.eff[i];
+		time0[i] = b.time0[i];
+	}
+
+
+}
+
+Weak::Weak(Weak &&b)  {
+	type = (b.type);
+	lvl = (b.lvl);
+	time = (b.time);
+	for (int i = 0; i < 2; i++){
+		eff[i] = b.eff[i];
+		time0[i] = b.time0[i];
+	}
+}
+
 Weak::~Weak(){
-	delete[] eff;
+	//delete[] eff;
 }
 //float Weak::getWkns() {
 //	return this->eff[lvl];

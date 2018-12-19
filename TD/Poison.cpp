@@ -38,8 +38,30 @@ Poison::Poison(int lvld) :Effect(2, lvld) {
 	rate = 2*(3- lvl);
 }
 
+Poison::Poison(const Poison &b) {
+	type = (b.type);
+	lvl = (b.lvl);
+	time = (b.time);
+	for (int i = 0; i < 2; i++){
+		eff[i] = b.eff[i];
+		time0[i] = b.time0[i];
+	}
+
+
+}
+
+Poison::Poison(Poison &&b)  {
+	type = (b.type);
+	lvl = (b.lvl);
+	time = (b.time);
+	for (int i = 0; i < 2; i++){
+		eff[i] = b.eff[i];
+		time0[i] = b.time0[i];
+	}
+}
+
 Poison::~Poison(){
-	delete[] eff;
+	//delete[] eff;
 }
 int Poison::AddDmg(int dmg){
 	int timet = this->getTime();

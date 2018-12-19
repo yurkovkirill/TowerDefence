@@ -12,6 +12,10 @@ public:
 
 	Weak(int lvld);
 
+	Weak(const Weak &);
+
+	Weak(Weak &&);
+
 	~Weak();
 
 	//float getWkns() override = default;

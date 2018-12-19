@@ -52,6 +52,8 @@ public:
 
 	void getslwns();
 
+	int getSlowValue();
+
 	Enemy();
 
 	Enemy(int lvl, std::string fname);

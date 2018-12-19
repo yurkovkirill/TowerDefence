@@ -14,6 +14,10 @@ public:
 
 	Slow();
 
+	Slow(const Slow &);
+
+	Slow(Slow &&);
+
 	Slow(int lvlt, const std::string &fname);
 
 	Slow(int lvld);

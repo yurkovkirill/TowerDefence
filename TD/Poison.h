@@ -18,6 +18,10 @@ public:
 
 	Poison(int lvld);
 
+	Poison(const Poison &);
+
+	Poison(Poison &&);
+
 	~Poison();
 
 	int AddDmg(int dmg);// override;//возвращает dmg+eff

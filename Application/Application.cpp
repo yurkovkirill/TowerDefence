@@ -4,6 +4,7 @@
 #include "..\TD\Game.h"
 #include "..\TD\Graphics.h"
 #include <iostream>
+#include <sstream>
 #include <SFML/Graphics.hpp>
 using namespace std;
 
@@ -16,18 +17,48 @@ int _tmain(int argc, _TCHAR* argv[])
 	A.Game::TurnG();
 	}*/
 	cout << "Welcome!" << endl;
-	char buf;
-	bool flagBreak;
 	Game G;
 	Graphics Graph(&G);
+	G.InputK('T');
 
 
 	RenderWindow window(sf::VideoMode(640, 480), "ForsenE");
 	window.setVerticalSyncEnabled(true); // call it once, after creating the window
 	
+	Clock clock;
+	Clock gameTimeClock;//переменна€ игрового времени, будем здесь хранить врем€ игры 
+	int gameTime = 0;//объ€вили игровое врем€, инициализировали.
+
+	Font font;//шрифт 
+	font.loadFromFile("fonts/CyrilicOld.ttf");//передаем нашему шрифту файл шрифта
+	Text text("", font, 20);//создаем объект текст. закидываем в объект текст строку, шрифт, размер шрифта(в пиксел€х);//сам объект текст (не строка)
+	text.setColor(Color::White);//покрасили текст в красный. если убрать эту строку, то по умолчанию он белый
+	text.setStyle(Text::Bold);//жирный текст.
+
+
 	int i = 0;
-	while (i++ < 1000){
-		G.TurnG(i);
+	while (1){
+		/*if (i == 456)
+			cout << endl;*/
+		float time = clock.getElapsedTime().asMilliseconds();//получаем истекшее врем€ clock с момента рестарта в микросекундах
+		gameTime = gameTimeClock.getElapsedTime().asSeconds(); //игровое врем€ в секундах идЄт вперед , перезагружать как time его не надо. оно не обновл€ет логику игры
+
+		if (time > 10){//кажда€ итераци€ логики игры
+			clock.restart();
+			G.TurnG(i);
+			i++;
+		}
+
+		std::cout << i << std::endl;
+		G.DrawAll();
+		system("cls");
+
+		if (G.checkStatus())
+		{
+			window.close();
+			break;
+		}
+
 		if (window.isOpen())
 		{
 			sf::Event event;
@@ -36,31 +67,21 @@ int _tmain(int argc, _TCHAR* argv[])
 				if (event.type == sf::Event::Closed)
 					window.close();
 			}
-
 			window.clear();
 			//window.setActive(false);
 			(*Graph.MapG).Draw(window);
 			(*Graph.GEnemiesG).Draw(window);
+
+			/// text
+			std::ostringstream  gameTimeString;    // объ€вили переменную времени
+			gameTimeString << gameTime;		//формируем строку
+			text.setString("¬рем€ игры: " + gameTimeString.str());//задаем строку тексту и вызываем сформированную выше строку методом .str()
+			text.setPosition(8, 342);
+			window.draw(text);//рисую этот текст
+			/// text
+
 			window.display();
 		}
-		if (G.checkStatus())
-			break;
-	}
-	system("pause");
-	while (window.isOpen())
-	{
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				window.close();
-		}
-
-		window.clear();
-		//window.setActive(false);
-		(*Graph.MapG).Draw(window);
-		(*Graph.GEnemiesG).Draw(window);
-		window.display();
 	}
 	system("pause");
 	

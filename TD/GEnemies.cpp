@@ -3,15 +3,34 @@
 #include "Landscape.h"
 
 int GEnemies::Draw(RenderWindow &window){
-	heroimage.loadFromFile("images/evil-minion.png");//загружаем в него файл
-	heroimage.createMaskFromColor(Color(255, 255, 255));
-	herotexture.loadFromImage(heroimage);//передаем в него объект Image (изображения)
-	herosprite.setTexture(herotexture);//передаём в него объект Texture (текстуры)
-	herosprite.setTextureRect(IntRect(0, 0, 32, 32));//получили нужный нам прямоугольник с котом
 
 	dot cor;
 	for (int i = 0; i < (*Enemyout).size(); i++)
 		{
+			if ((*Enemyout)[i].getSpeed() == 12){
+				heroimage.loadFromFile("images/zubat.png");//загружаем в него файл
+				
+			}
+			else{
+				if ((*Enemyout)[i].getSpeed() == 8){
+					heroimage.loadFromFile("images/enemy2_32.png");//загружаем в него файл
+					
+				}
+				else 
+					if ((*Enemyout)[i].getSpeed() == 4){
+						heroimage.loadFromFile("images/agentsmith32.png");//загружаем в него файл
+						
+					}
+			}
+			heroimage.createMaskFromColor(Color(255, 255, 255));
+			herotexture.loadFromImage(heroimage);//передаем в него объект Image (изображения)
+			herosprite.setTexture(herotexture);//передаём в него объект Texture (текстуры)
+			herosprite.setTextureRect(IntRect(0, 0, 32, 32));//получили нужный нам прямоугольник с котом
+			if ((*Enemyout)[i].getSlowValue()>1)
+				herosprite.setColor(Color::Blue);
+			else
+				herosprite.setColor(Color::White);
+
 			cor = (*Enemyout)[i].getCor();
 			herosprite.setPosition(cor.x* 32, cor.y * 32);//j i == x y
 			window.draw(herosprite);//рисуем квадратики на экран

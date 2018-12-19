@@ -93,6 +93,10 @@ std::vector<Enemy> * Landscape::getEnemies(){
 	return &(this->Enemyout);
 }
 
+std::vector<Weapon*> * Landscape::getWeapons(){
+	return &(this->Weapons);
+}
+
 char*** Landscape::getMap(){
 	return &(this->Map);
 }
@@ -114,6 +118,7 @@ void Landscape::delEn(int enit) {//удаляется [enit]
 
 void Landscape::TurnL(int it) {
 	//1)сначала нужно пройтись по оружию
+
 	unsigned i = 0;
 	for (i = 0; i < Weapons.size(); i++)
 		(*Weapons[i]).Turn();
@@ -131,7 +136,6 @@ void Landscape::TurnL(int it) {
 	}
 	(*CastleL).Turn();
 	(*LairL).Turn(it);
-	std::cout << it << std::endl;
 }
 	//прорисовку не надо , это в Game и установка объектов там же
 int Landscape::BuildT(int x, int y){
@@ -162,7 +166,7 @@ int Landscape::BuildMT(int x, int y){
 	else
 	{
 		if (Map[y][x] == '.'){
-			Weapon* Etmp = new MTower(this, x, y, 0, 1,  "configTowers.txt");//Slow=1
+			Weapon* Etmp = new MTower(this, x, y, 0, 3,  "configTowers.txt");//Slow=1
 			Weapons.push_back(Etmp);
 			Etmp = nullptr;
 		}

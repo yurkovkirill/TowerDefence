@@ -32,6 +32,7 @@ public:
 
 	int addenemy(Enemy);//
 	std::vector<Enemy> *getEnemies();//*==& он может меняться в Lair e.g.
+	std::vector<Weapon*> *getWeapons();
 	char*** getMap();
 	dot getCcor();
 	dot getLcor();

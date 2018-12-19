@@ -17,11 +17,11 @@ int Effect::getLvl() {
 }
 
 int Effect::IsGone(){//use for eff time run
+	time++;//то есть используем метод=идет время эффекта (не...==не идет)
 	if (time >= time0[lvl])
 		return 1;
 	else 
 		return 0;
-	time++;//то есть используем метод=идет время эффекта (не...==не идет)
 }
 
 Effect::Effect() : type(-1) , lvl(0) {
@@ -39,10 +39,11 @@ Effect::Effect(int typed,int lvld):type(typed),lvl(lvld) {
 	time = 0;
 }
 
-Effect::~Effect(){
-	delete[] time0;
-}
 
+
+Effect::~Effect(){
+	//
+}
 int Effect::getTime() {
 	return this->time;
 }

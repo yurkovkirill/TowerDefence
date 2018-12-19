@@ -38,8 +38,6 @@ void Game::DrawAll(){
 }
 void Game::TurnG(int it) {
 	//draw
-	DrawAll();
-	system("cls");
 	//input
 	//Logic
 	(*Land).TurnL(it);

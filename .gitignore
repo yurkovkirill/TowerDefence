@@ -11,3 +11,5 @@
 #/Application/** 
 /ipch/** 
 /Debug/**
+!*.png
+!*.ttf

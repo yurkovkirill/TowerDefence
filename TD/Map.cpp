@@ -1,9 +1,10 @@
 #include "stdafx.h"
 #include "Map.h"
 #include "Landscape.h"
+#include "Graphics.h"
 
 int Map::setMap(char*** tMap){
-	LMap = new char*[height];
+	LMap = new char*[height];//можно избавитьс€
 	int i = 0;
 	for (i = 0; i<height; i++)
 		LMap[i] = new char[width];
@@ -12,6 +13,11 @@ int Map::setMap(char*** tMap){
 		{
 			LMap[i][j] = (*tMap)[i][j];
 		}
+	return 1;
+}
+
+int Map::setWeapons(std::vector<Weapon*> *Weaponst){
+	Weapons = Weaponst;
 	return 1;
 }
 
@@ -45,7 +51,7 @@ int Map::Draw(RenderWindow &Mwindow){
 	};*/
 	map_image.loadFromFile("images/map.png");//загружаем файл дл€ карты
 	map.loadFromImage(map_image);//зар€жаем текстуру картинкой
-	s_map.setTexture(map);//заливаем текстуру спрайтом
+	s_map.setTexture(map);//заливаем спрайт
 
 	/////////////////////////////–исуем карту/////////////////////
 	for (int i = 0; i < height; i++)
@@ -63,6 +69,63 @@ int Map::Draw(RenderWindow &Mwindow){
 			s_map.setPosition(j * 32, i * 32);//по сути раскидывает квадратики, превраща€ в карту. то есть задает каждому из них позицию. если убрать, то вс€ карта нарисуетс€ в одном квадрате 32*32 и мы увидим один квадрат
 			Mwindow.draw(s_map);//рисуем квадратики на экран
 		}
+
+
+	//
+	dot cor;
+	map_image.loadFromFile("images/castle32.png");//загружаем файл дл€ «јћ ј
+	map_image.createMaskFromColor(Color(255, 255, 255));
+	map.loadFromImage(map_image);//зар€жаем текстуру картинкой
+	s_map.setTexture(map);//заливаем спрайт
+	s_map.setTextureRect(IntRect(0, 0, 32, 32));//можно не писать с данной картинкой
+	cor = (*(*GraphicsM).Land).getCcor();
+	s_map.setPosition(cor.x * 32, cor.y * 32);
+	Mwindow.draw(s_map);
+
+	map_image.loadFromFile("images/flagblack.png");//загружаем файл дл€ Ћогова
+	map_image.createMaskFromColor(Color(255, 255, 255));
+	map.loadFromImage(map_image);//зар€жаем текстуру картинкой
+	s_map.setTexture(map);//заливаем спрайт
+	s_map.setTextureRect(IntRect(0, 0, 32, 32));//можно не писать с данной картинкой
+	cor = (*(*GraphicsM).Land).getLcor();
+	s_map.setPosition(cor.x * 32, cor.y * 32);
+	Mwindow.draw(s_map);
+
+	map_image.loadFromFile("images/2tower32.png");//загружаем файл дл€ Ћогова
+	map_image.createMaskFromColor(Color(255, 255, 255));
+	map.loadFromImage(map_image);//зар€жаем текстуру картинкой
+	s_map.setTexture(map);//заливаем спрайт
+	s_map.setTextureRect(IntRect(0, 0, 32, 32));//можно не писать с данной картинкой
+
+
+	for (unsigned i = 0; i < (*Weapons).size(); i++)
+		{
+			cor = (*(*Weapons)[i]).getCor();
+			//circle
+			float rad = (*(*Weapons)[i]).getRad();
+			sf::CircleShape shape( rad* 32);
+			shape.setFillColor(sf::Color::White);
+			// set a 3-pixel wide orange outline
+			shape.setOutlineThickness(3);
+			shape.setOutlineColor(sf::Color(250, 150, 100));
+			//shape.createMaskFromColor(Color(255, 255, 255));
+			shape.setPosition(cor.x * 32 - rad * 32 + 16, cor.y * 32 - rad * 32 + 16);
+			Mwindow.draw(shape);
+
+
+			//if (TileMap[i][j] == ' ')  s_map.setTextureRect(IntRect(0, 0, 32, 32)); //если встретили символ пробел, то рисуем 1й квадратик
+			//if (TileMap[i][j] == 's')  s_map.setTextureRect(IntRect(32, 0, 32, 32));//если встретили символ s, то рисуем 2й квадратик
+			//if ((TileMap[i][j] == '0')) s_map.setTextureRect(IntRect(64, 0, 32, 32));//если встретили символ 0, то рисуем 3й квадратик
+
+			s_map.setPosition(cor.x * 32, cor.y * 32); 
+			Mwindow.draw(s_map);//рисуем квадратики на экран
+
+			
+
+		}
+
+
+
 	return 1;
 }
 
@@ -125,11 +188,15 @@ Map::Map()
 {
 }
 
-Map::Map(Landscape* Land)
+Map::Map(Landscape* Land, Graphics* Graphicst)
 {
+	GraphicsM = Graphicst;
 	height = (*Land).height;
 	width = (*Land).width;
 	setMap((*Land).getMap());
+	setWeapons((*(*GraphicsM).Land).getWeapons());
+
+
 }
 
 Map::~Map()
