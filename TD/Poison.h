@@ -1,7 +1,11 @@
 #ifndef POISON_H
 #define POISON_H
 #include "Effect.h"
+/**
+\brief  ласс эффекта "яд" 
 
+Ѕьет врага с определенной частотой
+*/
 class Poison : public Effect {//2 eff 
 
 private:

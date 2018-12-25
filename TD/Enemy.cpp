@@ -173,7 +173,7 @@ Enemy::~Enemy(){
 	Effects.clear();
 	//delete[] Effects;
 }
-void Enemy::Turn(){
+void Enemy::Turn(){///Проверка всех эффектов и продвижение по карте 
 	it++;
 	getslwns();
 	if (it >= speed*slwns)//1)продвижение 

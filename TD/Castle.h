@@ -5,7 +5,11 @@
 class Landscape;
 //class Placeable;
 #include "Placeable.h"
+/**
+\brief Класс замка 
 
+Отвечает за получение золота и смерть врагов , которые прошли к нему
+*/
 class Castle : public Placeable {
 
 private:

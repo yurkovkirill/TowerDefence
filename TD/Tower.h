@@ -2,6 +2,11 @@
 #define TOWER_H
 //#include "STable.h"
 #include "Weapon.h"
+/**
+\brief Класс обычной башни , также является родительским для магической башни
+
+Основная функция - атака обнаруженных врагов по заданной стратегии
+*/
 class Tower : public Weapon {
 
 protected:

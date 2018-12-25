@@ -1,6 +1,11 @@
 #ifndef EFFECT_H
 #define EFFECT_H
 #include <string>
+/**
+\brief Родительский класс для эффектов
+
+Имеет различную силу в зависимости от уровня
+*/
 class Effect {
 
 protected:

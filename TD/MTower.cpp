@@ -2,7 +2,7 @@
 #include "MTower.h"
 #include "Enemy.h"
 
-int MTower::Attack(Enemy* Eat) {
+int MTower::Attack(Enemy* Eat) {///Атакует врага
 	if (Eat == nullptr){
 		it++;
 		return 0;
@@ -18,7 +18,7 @@ int MTower::Attack(Enemy* Eat) {
 	return 1;
 }
 
-void MTower::Turn() {
+void MTower::Turn() {///обнаруживает и атакует врага
 	Enemy *Eat;
 	Eat = DetectEnemy();//1)Detect
 	Attack(Eat);//2)Attack

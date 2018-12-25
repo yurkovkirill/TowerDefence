@@ -1,6 +1,11 @@
 #ifndef WEAK_H
 #define WEAK_H
 #include "Effect.h"
+/**
+\brief Класс эффекта "Слабость"
+
+Чем больше слабость врага , тем больше множитель получаемого урона
+*/
 class Weak : public Effect {//3 eff
 
 private:

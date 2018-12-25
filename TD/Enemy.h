@@ -10,20 +10,27 @@
 #include <stdexcept>  
 
 const int SIZEL = 100; //»з landscape
+/**
+\brief  ласс ¬рага
+
+Езлые демоны с любопытством наблюдают вс€кое наше движение и ничего не оставл€ют неисследованным из того,
+чем можно воспользоватьс€ против нас Ц ни вставани€, ни сидени€, ни сто€ни€, ни поступи, ни слова, ни взора, Ц все любопытствуют, Ђвесь день поуча€сь на нас лъстивнымї (ѕсал. 37:13),
+чтоб во врем€ молитвы осрамить смиренный ум и блаженный его погасить свет.
+*/
 class Enemy {
 
 public:
-	int Isdead;
+	int Isdead;///<Is Dead?
 protected:
 	int hp;
-	dot cor;
+	dot cor;///< текуща€ позици€
 private:
-	int it;//итератор дл€ скорости 
-	int speed;
-	std::queue<dot> path;
-	int slwns;//from 1 to inf
-	std::vector<Effect*> Effects;//это nullptr при создании , так что копирующий конструкторп не нужен 
-	//For landscape tip : если insert , то вызываетс€ копирующий конструктор + еще надо перегрузить = если 
+	int it;///<итератор дл€ скорости 
+	int speed;///<каждые speed*slwns итератора враг ходит
+	std::queue<dot> path;///< путь , каждый будущий шаг 
+	int slwns;///<from 1 to inf
+	std::vector<Effect*> Effects;///<¬ектор наложенных эффектов
+	
 
 public:
 	int getHp();
@@ -50,9 +57,9 @@ public:
 
 	void gonext();
 
-	void getslwns();
+	void getslwns();///<рассчитать новое значение от эффектов
 
-	int getSlowValue();
+	int getSlowValue();///<Value
 
 	Enemy();
 

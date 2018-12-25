@@ -23,7 +23,10 @@
 //};
 
 
+/**
+\brief Шаблон класс для хранения характеристик неподвижных объектов
 
+*/
 template<class Type,size_t N>
 class STable {
 

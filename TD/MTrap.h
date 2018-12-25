@@ -3,6 +3,11 @@
 #include "Weapon.h"
 //#include "STable.h"
  class Effect;
+ /**
+ \brief Класс магической ловушки
+
+Накладывает дебаф на врагов . Забалансена так , чтобы по магии превосходить м. башню
+ */
 class MTrap :public Weapon {
 
 protected:

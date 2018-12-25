@@ -7,7 +7,11 @@ class Lair;
 class Castle;
 #include <SFML\Graphics.hpp>
 using namespace sf;
+/*!
+\brief Графика карты и неподвижных объектов
 
+Связан с основным классом графики
+*/
 class Map
 {
 public:
@@ -16,10 +20,10 @@ public:
 	Sprite s_map;//создаём спрайт для карты
 private:
 	Graphics* GraphicsM;
-	char*** LMap;
-	int height; int width;
+	char*** LMap;///<указатель на таблицу карты из Landscape
+	int height; int width;///< Для удобства работы с картой
 
-	std::vector<Weapon*> *Weapons;
+	std::vector<Weapon*> *Weapons;///<указатель на вектор защитных построек карты из Landscape
 public:
 	int setMap(char***);//здесь башни логово и замок
 

@@ -4,7 +4,11 @@
 #include <fstream>
 
 class Landscape;
+/**
+\brief Родительский класс для всякого неподвижного объекта
 
+Имеет указатель на Ландшафт в котором находится
+*/
 class Placeable {
 
 private:
@@ -15,19 +19,15 @@ protected:
 	void setCor(dot cor);
 
 public:
-	dot getCor();
+	dot getCor();///<получить координаты
 
 	Placeable();
 
-	Placeable(Landscape* Land1 , int int_posx , int int_posy);
+	Placeable(Landscape* Land1 , int int_posx , int int_posy);///<Основной конструктор
 
 	~Placeable();
 
-	void SetLand(Landscape* Land1){ this->Land = Land1; };
-
-	//virtual void Turn();// = 0; //то же что и внизу , но просто placeable мы теперь не может создать
-
-	/*virtual*/ //~Placeable();// = default;//дефолтный 
+	void SetLand(Landscape* Land1){ this->Land = Land1; };///<Задать указатель на ландшафт
 };
 
 #endif

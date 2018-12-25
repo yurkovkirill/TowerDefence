@@ -5,11 +5,20 @@
 #include <queue>
 #include <vector>
 const unsigned int SIZEW = 10;
+
+/**
+\brief Структура для понятного хранения единицы тактики 
+*/
 struct Lairtactic{
 	int timetp;//time to push
 	int num;
 	int lvl;
 };
+/**
+\brief Класс логова
+
+Генерирует волны врагов в зависимости тактики из файла
+*/
 class Lair : public Placeable {
 
 private:

@@ -1,18 +1,31 @@
+/**
+\file
+\brief Заголовочный файл с классом Game
+
+Данный файл содержит в себе определение основного
+класса игры , именно через него работает вся логика
+*/
+
+/*!
+\brief Один из основных классов игры , управляет логикой
+
+Данный класс имеет указатель на ландшафт и переменные отвечающие за текущий статус игры
+*/
 #ifndef GAME_H
 #define GAME_H
 #include "Landscape.h"
 class Game {
 private:
-	bool gameOver;
-	bool wonLvl;
-	Landscape* Land;//по сути можно без указателя
+	bool gameOver;///< Проиграли игру == true
+	bool wonLvl;///<Выйграли уровень == true
+	Landscape* Land;///<указатель на ландшафт
 
 public:
-	bool getgameOver();
+	bool getgameOver();///< return geamOver value 
 
-	bool getwonLvl();
+	bool getwonLvl();///< return wonLvl value
 
-	Landscape* getLand();
+	Landscape* getLand();///<Возвращает указатель на ландшафт
 
 	bool checkStatus();
 
