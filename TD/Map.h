@@ -16,7 +16,7 @@ public:
 	Sprite s_map;//создаём спрайт для карты
 private:
 	Graphics* GraphicsM;
-	char** LMap;
+	char*** LMap;
 	int height; int width;
 
 	std::vector<Weapon*> *Weapons;
