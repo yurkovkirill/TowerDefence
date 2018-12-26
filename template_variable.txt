@@ -1,0 +1,33 @@
+// ConsoleApplication1.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+
+
+
+template<class Arg>
+inline std::ostream & print(std::ostream & out, const Arg &arg)
+{
+	out << arg;
+	return out;
+}
+template<class Arg, class ...Args>
+inline std::ostream & print(std::ostream & out, const Arg &arg, const Args &...args)
+{
+	out << arg;
+	print(out, args...);
+	return out;
+}
+
+template<class ...Args>
+std::ostream & printAll(std::ostream & out, const Args &...args)
+{
+	return print(out, args...);
+}
+int _tmain(int argc, _TCHAR* argv[])
+{
+	printAll(std::cout,"Hello", 22);
+	return 0;
+}
+

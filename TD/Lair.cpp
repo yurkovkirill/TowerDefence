@@ -47,16 +47,8 @@ void Lair::setwave(int wavenum , int lvl) {
 		Enemyin.push(Etmp);//создает копию в векторе
 	}
 }
-/*!
-\brief Определяет дальнейший путь врагов 
-
-Здесь реализован алгоритм поиска пути , а именнно алгоритм Ли или т.н. Волновой алгоритм
-*/
 bool Lair::setpath(int startX, int startY, int targetX, int targetY) {
-	/// \param startX Координата старта X
-	/// \param startY Координата старта Y
-	/// \param targetX Координата финиша X
-	/// \param targetY Координата финиша Y
+	
 	{
 		bool stop = false;
 		int x, y, step = 0;

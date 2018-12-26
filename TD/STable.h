@@ -50,7 +50,7 @@ private:
 public:
 	typedef MyIterator<Type> iterator;
 	iterator begin(){ return Specs[0]; }
-	iterator end(){ return Specs[N-1]; }
+	iterator end(){ return Specs[N]; }
 	Type getVal(int lvl){
 		if ((lvl < 0)||(lvl>N-1)){
 			throw std::range_error("Invalid lvl");
@@ -77,6 +77,17 @@ public:
 		}
 	}
 };
+template<class Arg>
+std::ostream & print(std::ostream & out, const Arg &arg)
+{
+	out << arg;
+}
+template<class Arg, class ...Args>
+std::ostream & print(std::ostream & out, const Arg &arg, const Args &...args)
+{
+	out << arg;
+	print(out ,args...);
+}
 
 
 #endif
