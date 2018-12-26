@@ -4,25 +4,40 @@
 #include <string>
 #include <fstream>
 
-//class STable {
-//
-//private : 
-//	TableS Specs[3];
-//public:
-//	int getDmg(int int_lvl);
-//
-//	int getRate(int int_lvl);
-//
-//	int getRad(int int_lvl);
-//
-//	int getCost(int int_lvl);
-//
-//	STable();
-//
-//	STable(const std::string &fname);
-//};
+template <class Type,size_t N>
+ class STable;
+template<typename Type>
+class MyIterator
+{
+	/*friend class STable<Type>;*/
+	Type* value; // значение
+public:
+	// Конструкторы
+	MyIterator() : value(nullptr){}
+	MyIterator(const MyIterator&it) :value(it.value){}
+	MyIterator operator=(MyIterator const &it){ if (*this != it) value = value.p; return *this; }
+	bool operator > (MyIterator const &oi) const{ return value > oi.value; }
+	bool operator < (MyIterator const &oi) const{ return value < oi.value; }
+	bool operator != (MyIterator const &oi) const{ return value != oi.value; }
+	bool operator == (MyIterator const &oi) const{ return value == oi.value; }
+	MyIterator operator+(const int i) const { return (value + i); }
+	Type& operator*() const { if (value == nullptr) throw std::exception("Iterator not inited"); else return *p; }
+	Type& operator->() const { if (value == nullptr) throw std::exception("Iterator not inited"); else return p; }
+	MyIterator& operator++(){ if (value == nullptr) throw std::exception("Iterator not inited"); else p += 1; return *this }
+	MyIterator& operator--(){ if (value == nullptr) throw std::exception("Iterator not inited"); else p -= 1; return *this }
+	template <typename U, std::size_t N>
+	MyIterator(STable<U, N> & arr)  // инициализируем итератор первым элементом шаблона
+	{
+		value = arr.getVal(0);
+	}
 
+	// Методы
+	Type operator*() // получаем текущий элемент
+	{
+		return *this->value;
+	}
 
+};
 /**
 \brief Шаблон класс для хранения характеристик неподвижных объектов
 
@@ -33,6 +48,9 @@ class STable {
 private:
 	Type Specs[N];
 public:
+	typedef MyIterator<Type> iterator;
+	iterator begin(){ return Specs[0]; }
+	iterator end(){ return Specs[N-1]; }
 	Type getVal(int lvl){
 		if ((lvl < 0)||(lvl>N-1)){
 			throw std::range_error("Invalid lvl");
@@ -59,4 +77,6 @@ public:
 		}
 	}
 };
+
+
 #endif
