@@ -35,7 +35,7 @@ public:
 
 	void TurnG(int);
 
-	int InputK(char);
+	int InputK(char,int,int);
 
 	Game();
 

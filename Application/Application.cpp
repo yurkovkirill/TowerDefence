@@ -9,6 +9,26 @@
 #include <thread>
 #include <chrono>
 using namespace std;
+dot ConverttoMap(int* x, int* y){
+	dot cor;
+	cor.x = floor(*x / 32);
+	cor.y = floor(*y / 32);
+	return cor;
+}
+int ClickMap(RenderWindow &window, Game * G, sf::Event * event0){
+
+	Vector2i pos = Mouse::getPosition(window);//забираем коорд курсора
+	dot cor;
+	std::cout << pos.x << "\n";//смотрим на координату Х позиции курсора в консоли (она не будет больше ширины окна)
+	if ((*event0).type == Event::MouseButtonPressed)//если нажата клавиша мыши
+		if ((*event0).key.code == Mouse::Left)//а именно левая
+		{
+			cor = ConverttoMap(&pos.x, &pos.y);
+			(*G).InputK('T', cor.x, cor.y);
+		}
+	return 1;
+}
+
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -21,7 +41,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	cout << "Welcome!" << endl;
 	Game G;
 	Graphics Graph(&G);
-	G.InputK('T');
+	G.InputK('T',9,4);
 
 
 	RenderWindow window(sf::VideoMode(640, 480), "ForsenE");
@@ -111,7 +131,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			///// clickofmouse
 
 
-			
+			ClickMap(window,&G,&event);
 			//window.setActive(false);
 
 			/// graphics

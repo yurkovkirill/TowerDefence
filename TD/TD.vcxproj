@@ -85,8 +85,11 @@
     <ClInclude Include="Effect.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GEnemies.h" />
+    <ClInclude Include="Graphics.h" />
     <ClInclude Include="Lair.h" />
     <ClInclude Include="Landscape.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="MTower.h" />
     <ClInclude Include="MTrap.h" />
     <ClInclude Include="Placeable.h" />
@@ -106,8 +109,11 @@
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GEnemies.cpp" />
+    <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Lair.cpp" />
     <ClCompile Include="Landscape.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="MTower.cpp" />
     <ClCompile Include="MTrap.cpp" />
     <ClCompile Include="Placeable.cpp" />

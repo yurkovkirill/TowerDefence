@@ -54,11 +54,11 @@ Game::~Game(){
 	delete Land;
 }
 
-int Game::InputK(char key){
+int Game::InputK(char key,int x , int y){
 	switch (key)
 	{
 		case 'T':
-			int fl = (*Land).BuildMT(9,3);//CT
+			int fl = (*Land).BuildMT(x,y);//CT
 			switch (fl)
 			{
 			case 0:
