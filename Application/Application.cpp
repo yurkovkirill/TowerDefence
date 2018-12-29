@@ -30,6 +30,7 @@ int ClickMap(RenderWindow &window, Game * G, sf::Event * event0){
 }
 
 
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	/*Game A;
@@ -42,7 +43,61 @@ int _tmain(int argc, _TCHAR* argv[])
 	Game G;
 	Graphics Graph(&G);
 	G.InputK('T',9,4);
+	Font font;//шрифт 
+	font.loadFromFile("fonts/CyrilicOld.ttf");//передаем нашему шрифту файл шрифта
+	Text text("", font, 20);//создаем объект текст. закидываем в объект текст строку, шрифт, размер шрифта(в пикселях);//сам объект текст (не строка)
+	text.setColor(Color::White);//покрасили текст в красный. если убрать эту строку, то по умолчанию он белый
+	text.setStyle(Text::Bold);//жирный текст.
 
+
+
+	///////////// in building
+	Image yes_image;//объект изображения для карты
+	Texture yes_texture;//текстура карты
+	Sprite yes_sprite;//создаём спрайт для карты
+	yes_image.loadFromFile("images/Yes_19x89.png");//загружаем файл для карты
+	yes_texture.loadFromImage(yes_image);//заряжаем текстуру картинкой
+	yes_sprite.setTexture(yes_texture);//заливаем спрайт
+	//s_map.setTextureRect(IntRect(64, 0, 32, 32));
+	RenderWindow menuwindow(sf::VideoMode(200, 200), "Tower Defence Menu");
+	while (1){
+		if (menuwindow.isOpen())
+		{
+			sf::Event event;
+			bool Break = false;
+			Vector2i pixelPos = Mouse::getPosition(menuwindow);//забираем коорд курсора
+			Vector2f pos = menuwindow.mapPixelToCoords(pixelPos);//переводим их в игровые (уходим от коорд окна)
+			while (menuwindow.pollEvent(event))
+			{
+				if (event.type == sf::Event::Closed){
+					menuwindow.close();
+				}
+				if (event.type == Event::MouseButtonPressed)//если нажата клавиша мыши
+					if (event.key.code == Mouse::Left)//а именно левая
+						if (yes_sprite.getGlobalBounds().contains(pos.x, pos.y))//и при этом координата курсора попадает в спрайт
+						{
+							Break = true;
+						}
+			}
+			if (Break){
+				menuwindow.close();
+				break;
+			}
+			if (event.type == sf::Event::Closed){
+				break;
+			}
+			menuwindow.clear();
+			text.setString("Запустить игру?");//задаем строку тексту и вызываем сформированную выше строку методом .str()
+			text.setPosition(0, 0);
+			menuwindow.draw(text);//рисую этот текст
+			yes_sprite.setPosition(0, 32);
+			menuwindow.draw(yes_sprite);
+			menuwindow.display();
+		}
+	}
+
+
+	/////////////
 
 	RenderWindow window(sf::VideoMode(640, 480), "ForsenE");
 	window.setVerticalSyncEnabled(true); // call it once, after creating the window
@@ -51,17 +106,11 @@ int _tmain(int argc, _TCHAR* argv[])
 	Clock gameTimeClock;//переменная игрового времени, будем здесь хранить время игры 
 	int gameTime = 0;//объявили игровое время, инициализировали.
 
-	Font font;//шрифт 
-	font.loadFromFile("fonts/CyrilicOld.ttf");//передаем нашему шрифту файл шрифта
-	Text text("", font, 20);//создаем объект текст. закидываем в объект текст строку, шрифт, размер шрифта(в пикселях);//сам объект текст (не строка)
-	text.setColor(Color::White);//покрасили текст в красный. если убрать эту строку, то по умолчанию он белый
-	text.setStyle(Text::Bold);//жирный текст.
 
-	bool isMove = false;//переменная для щелчка мыши по спрайту
-	float dX = 0;//корректировка движения по х
-	float dY = 0;//по у
+	
 
 	int i = 0;
+	/////////////////GAME START
 	while (1){
 		/*if (i == 456)
 			cout << endl;*/
@@ -96,6 +145,9 @@ int _tmain(int argc, _TCHAR* argv[])
 			{
 				if (event.type == sf::Event::Closed)
 					window.close();
+			}
+			if (event.type == sf::Event::Closed){//CT закрывается если закрыли окно
+				break;
 			}
 			window.clear();
 
