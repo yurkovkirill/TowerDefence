@@ -82,19 +82,32 @@ int Map::Draw(RenderWindow &Mwindow){
 	Mwindow.draw(s_map);
 
 	//рисуем башни
-	map_image.loadFromFile("images/2tower32.png");//загружаем файл для башни
-	map_image.createMaskFromColor(Color(255, 255, 255));
-	map.loadFromImage(map_image);//заряжаем текстуру картинкой
-	s_map.setTexture(map);//заливаем спрайт
-	s_map.setTextureRect(IntRect(0, 0, 32, 32));//можно не писать с данной картинкой
-
-
-	for (unsigned i = 0; i < (*Weapons).size(); i++)//todo вынести в отдельный файл
+	for (unsigned i = 0; i < (*Weapons).size(); i++)
 		{
-			//todo определение lvl
-			cor = (*(*Weapons)[i]).getCor();
+			Weapon* W = (*Weapons)[i];
+			if ((*W).getLvl() == 0){
+				map_image.loadFromFile("images/tower1lvl.png");//загружаем файл для башни
+
+			}
+			else{
+				if ((*W).getLvl() == 1){
+					map_image.loadFromFile("images/tower2lvl.png");//загружаем в него файл
+
+				}
+				else
+				if ((*W).getLvl() == 2){
+					map_image.loadFromFile("images/shield.png");//загружаем в него файл
+
+				}
+			}
+			map_image.createMaskFromColor(Color(255, 255, 255));
+			map.loadFromImage(map_image);//заряжаем текстуру картинкой
+			s_map.setTexture(map);//заливаем спрайт
+			s_map.setTextureRect(IntRect(0, 0, 32, 32));//можно не писать с данной картинкой
+
+			cor = (*W).getCor();
 			//circle
-			float rad = (*(*Weapons)[i]).getRad();
+			float rad = (*W).getRad();
 			sf::CircleShape shape( rad* 32);
 			shape.setFillColor(sf::Color(255, 255, 255, 128)); //sf::Color::Transparent sf::Color(255, 255, 255, 128)
 			// set a 3-pixel wide orange outline

@@ -114,7 +114,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	while (1){
 		/*if (i == 456)
 			cout << endl;*/
-		float time = clock.getElapsedTime().asMilliseconds();//получаем истекшее время clock с момента рестарта в микросекундах
+		int time = clock.getElapsedTime().asMilliseconds();//получаем истекшее время clock с момента рестарта в микросекундах
 		gameTime = gameTimeClock.getElapsedTime().asSeconds(); //игровое время в секундах идёт вперед , перезагружать как time его не надо. оно не обновляет логику игры
 
 		if (time < 10)

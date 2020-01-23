@@ -7,17 +7,17 @@ int GEnemies::Draw(RenderWindow &window){
 	dot cor;
 	for (int i = 0; i < (*Enemyout).size(); i++)
 		{
-			if ((*Enemyout)[i].getSpeed() == 12){//todo
+			if ((*Enemyout)[i].getLvl() == 0){
 				heroimage.loadFromFile("images/zubat.png");//загружаем в него файл
 				
 			}
 			else{
-				if ((*Enemyout)[i].getSpeed() == 8){
+				if ((*Enemyout)[i].getLvl() == 1){
 					heroimage.loadFromFile("images/enemy2_32.png");//загружаем в него файл
 					
 				}
 				else 
-					if ((*Enemyout)[i].getSpeed() == 4){
+					if ((*Enemyout)[i].getLvl() == 2){
 						heroimage.loadFromFile("images/agentsmith32.png");//загружаем в него файл
 						
 					}

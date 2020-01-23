@@ -11,9 +11,8 @@ Landscape::Landscape(){
 }
 Landscape::Landscape(const std::string mfname){//setup like
 	//подгрузка карты из файла
-	std::ifstream fs("../" + mfname);
-	if (fs.is_open())
-	{
+	try{
+		std::ifstream fs("../" + mfname);
 		std::string tmp;
 		//int width; int height;
 		dot Ccor; dot Lcor;
@@ -36,10 +35,11 @@ Landscape::Landscape(const std::string mfname){//setup like
 		CastleL = new Castle(this, "configCastle.txt", Ccor.x, Ccor.y);
 		LairL = new Lair(this, Lcor.x, Lcor.y);
 	}
-	else{//todo errors
-		std::cout << "ERROR: Map load error" << std::endl;
+	catch (const std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+		exit(1);
 	}
-	
 }
 
 //constructors
@@ -118,7 +118,7 @@ void Landscape::delEn(int enit) {//удаляется [enit]
 	if (enit < 0){
 		throw std::exception("Invalid effit");
 	}
-	(*CastleL).Earn(4 * (Enemyout)[enit].getSpeed());//надо решить как начислять!
+	(*CastleL).Earn(4 * (Enemyout)[enit].getSpeed());//earn gold
 	//delete &(Enemyout[enit]);
 	Enemyout.erase(Enemyout.begin() + enit);
 }

@@ -57,7 +57,6 @@ Enemy* Weapon::DetectEnemy() {//сейчас дефолт стратеги€ - наиболее слабый
 		i++;
 	}
 	return Ew;
-	//gold += 4 * (*Enemyoutp)[i].getSpeed();//надо решить трабл начислени€ ! todo
 }
 //изначально лежала в Tower
 

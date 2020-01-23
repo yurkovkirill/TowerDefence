@@ -29,6 +29,7 @@ private:
 	int speed;///<каждые speed*slwns итератора враг ходит
 	std::queue<dot> path;///< путь , каждый будущий шаг 
 	int slwns;///<from 1 to inf
+	int lvl;
 	std::vector<Effect*> Effects;///<Вектор наложенных эффектов
 	
 
@@ -38,6 +39,8 @@ public:
 	void setHp(int hp);
 
 	int getSpeed();
+
+	int getLvl();
 
 	void setSpeed(int speed);
 

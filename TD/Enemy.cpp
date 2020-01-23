@@ -14,6 +14,10 @@ int Enemy::getSpeed() {
 	return this->speed;
 }
 
+int Enemy::getLvl() {
+	return this->lvl;
+}
+
 void Enemy::setSpeed(int speed) {
 	this->speed = speed;
 }
@@ -114,7 +118,7 @@ int Enemy::getSlowValue(){
 }
 
 Enemy::Enemy() {
-	int lvl = 0;
+	lvl = 0;
 	it = 0;
 	Isdead = 0;
 	speed = 4 * (3 - lvl);//
@@ -125,7 +129,7 @@ Enemy::Enemy() {
 	cor.y = SIZEL - 4;
 }
 
-Enemy::Enemy(const Enemy &b) : it(b.it) , Isdead(b.Isdead) , hp(b.hp) , cor(b.cor) , speed(b.speed) , path(b.path) , slwns(b.slwns)  {
+Enemy::Enemy(const Enemy &b) : it(b.it) , Isdead(b.Isdead) , hp(b.hp) , cor(b.cor) , speed(b.speed) , path(b.path) , slwns(b.slwns), lvl(b.lvl)  {
 	Effect* tmp = new Effect;
 	for (unsigned i = 0; i < b.Effects.size(); i++){
 		(*tmp) = (*(b.Effects[i]));
@@ -135,14 +139,14 @@ Enemy::Enemy(const Enemy &b) : it(b.it) , Isdead(b.Isdead) , hp(b.hp) , cor(b.co
 	
 }
 
-Enemy::Enemy(Enemy &&b) : it(b.it), Isdead(b.Isdead), hp(b.hp), cor(b.cor), speed(b.speed), path(b.path), slwns(b.slwns)  {
+Enemy::Enemy(Enemy &&b) : it(b.it), Isdead(b.Isdead), hp(b.hp), cor(b.cor), speed(b.speed), path(b.path), slwns(b.slwns), lvl(b.lvl)  {
 	for (unsigned i = 0; i < b.Effects.size(); i++){
 		this->Effects.push_back(b.Effects[i]);
 		b.Effects[i] = nullptr;
 	}
 }
 
-Enemy::Enemy(int lvl , std::string fname) {
+Enemy::Enemy(int lvli , std::string fname) {
 
 	int ks;
 	int khp;
@@ -152,6 +156,7 @@ Enemy::Enemy(int lvl , std::string fname) {
 		fs >> ks; fs >> khp;
 		fs.close();
 	}
+	lvl = lvli;
 	it = 0;
 	Isdead = 0;
 	speed = ks * (3 - lvl);//CT
