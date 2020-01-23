@@ -43,6 +43,7 @@ public:
 	Landscape(Landscape &&b);
 	~Landscape();
 
+	int getGold();
 	int addenemy(Enemy);//
 	std::vector<Enemy> *getEnemies();//*==& он может меняться в Lair e.g.
 	std::vector<Weapon*> *getWeapons();

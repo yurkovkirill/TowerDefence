@@ -3,8 +3,8 @@
 #include "Lair.h"
 #include <iostream>
 Landscape::Landscape(){
-	Weapons.reserve(4);//
-	Enemyout.reserve(10);//
+	Weapons.reserve(4);
+	Enemyout.reserve(10);
 	Map = nullptr;
 	CastleL = nullptr;
 	LairL = nullptr;
@@ -35,6 +35,9 @@ Landscape::Landscape(const std::string mfname){//setup like
 		fs.close();
 		CastleL = new Castle(this, "configCastle.txt", Ccor.x, Ccor.y);
 		LairL = new Lair(this, Lcor.x, Lcor.y);
+	}
+	else{//todo errors
+		std::cout << "ERROR: Map load error" << std::endl;
 	}
 	
 }
@@ -88,6 +91,10 @@ Landscape::~Landscape(){
 		delete i;
 	}
 	Weapons.clear();
+}
+
+int Landscape::getGold(){
+	return (*CastleL).getGold();
 }
 std::vector<Enemy> * Landscape::getEnemies(){
 	return &(this->Enemyout);

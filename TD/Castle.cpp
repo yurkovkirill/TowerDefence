@@ -9,7 +9,7 @@ void Castle::setHp(int hp) {
 	this->hp = hp;
 }
 
-int Castle::getGold() {
+int Castle::getGold() {//hack protection
 	return this->gold;
 }
 

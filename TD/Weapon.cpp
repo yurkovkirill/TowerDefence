@@ -19,7 +19,7 @@ void Weapon::setRad(float radt) {
 	this->rad = radt;
 }
 
-Weapon::Weapon() :Placeable(), lvl(0), rad(4.0), it(0), cost(100) {//dot=? подумай
+Weapon::Weapon() :Placeable(), lvl(0), rad(4.0), it(0), cost(100) {//dot=? подумай todo
 	//
 }
 
@@ -57,7 +57,7 @@ Enemy* Weapon::DetectEnemy() {//сейчас дефолт стратегия - наиболее слабый
 		i++;
 	}
 	return Ew;
-	//gold += 4 * (*Enemyoutp)[i].getSpeed();//надо решить трабл начисления !
+	//gold += 4 * (*Enemyoutp)[i].getSpeed();//надо решить трабл начисления ! todo
 }
 //изначально лежала в Tower
 

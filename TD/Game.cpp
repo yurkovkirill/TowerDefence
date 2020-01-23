@@ -28,8 +28,8 @@ bool Game::checkStatus(){
 	return false;
 }
 
-void Game::Setup(){
-	Land = new Landscape("configMap.txt");
+void Game::Setup(std::string mfname){
+	Land = new Landscape(mfname);
 }
 
 void Game::DrawAll(){
@@ -47,7 +47,12 @@ void Game::TurnG(int it) {
 }
 Game::Game(): gameOver(false) , wonLvl(false) {
 	//setup
-	Setup();
+	Setup("configMap.txt");
+}
+
+Game::Game(std::string mfname) : gameOver(false), wonLvl(false) {
+	//setup
+	Setup(mfname);
 }
 
 Game::~Game(){
@@ -74,7 +79,7 @@ int Game::InputK(char key,int x , int y){
 			}
 	break;
 						/*case 'B':
-							cout << "Choose, what to build: T - tower, W - wall, Q - quit (from build menu): ";
+							cout << "Choose, what to build: T - tower, W - wall, Q - quit from build menu: ";
 							cin.ignore(cin.rdbuf()->in_avail());
 							buf1 = '0';
 							flagBreak1 = 0;

@@ -41,6 +41,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	}*/
 	cout << "Welcome!" << endl;
 	Game G;
+	Landscape* GlobalLand = G.getLand();
 	Graphics Graph(&G);
 	G.InputK('T',9,4);
 	Font font;//шрифт 
@@ -58,7 +59,6 @@ int _tmain(int argc, _TCHAR* argv[])
 	yes_image.loadFromFile("images/Yes_19x89.png");//загружаем файл дл€ карты
 	yes_texture.loadFromImage(yes_image);//зар€жаем текстуру картинкой
 	yes_sprite.setTexture(yes_texture);//заливаем спрайт
-	//s_map.setTextureRect(IntRect(64, 0, 32, 32));
 	RenderWindow menuwindow(sf::VideoMode(200, 200), "Tower Defence Menu");
 	while (1){
 		if (menuwindow.isOpen())
@@ -194,7 +194,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			/// text
 			std::ostringstream  gameTimeString;    // объ€вили переменную времени
 			gameTimeString << gameTime;		//формируем строку
-			text.setString("¬рем€ игры: " + gameTimeString.str());//задаем строку тексту и вызываем сформированную выше строку методом .str()
+			text.setString("¬рем€ игры: " + gameTimeString.str() + " «олото: " + std::to_string((*GlobalLand).getGold()));//задаем строку тексту и вызываем сформированную выше строку методом .str()
 			text.setPosition(8, 342);
 			window.draw(text);//рисую этот текст
 			/// text

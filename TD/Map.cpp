@@ -49,21 +49,18 @@ int Map::Draw(RenderWindow &Mwindow){
 	for (int i = 0; i < height; i++)
 		for (int j = 0; j < width; j++)
 		{
-			if ((*LMap)[i][j] == '.')  s_map.setTextureRect(IntRect(0, 0, 32, 32)); //если встретили символ пробел, то рисуем 1й квадратик
-			if ((*LMap)[i][j] == '^')  s_map.setTextureRect(IntRect(32, 0, 32, 32));//если встретили символ s, то рисуем 2й квадратик
-			if ((*LMap)[i][j] == '=') s_map.setTextureRect(IntRect(64, 0, 32, 32));//если встретили символ 0, то рисуем 3й квадратик
-			if ((*LMap)[i][j] == '@') s_map.setTextureRect(IntRect(64, 0, 32, 32));//если встретили символ 0, то рисуем 3й квадратик
-			if ((*LMap)[i][j] == '*') s_map.setTextureRect(IntRect(64, 0, 32, 32));//если встретили символ 0, то рисуем 3й квадратик
-			//if (TileMap[i][j] == ' ')  s_map.setTextureRect(IntRect(0, 0, 32, 32)); //если встретили символ пробел, то рисуем 1й квадратик
-			//if (TileMap[i][j] == 's')  s_map.setTextureRect(IntRect(32, 0, 32, 32));//если встретили символ s, то рисуем 2й квадратик
-			//if ((TileMap[i][j] == '0')) s_map.setTextureRect(IntRect(64, 0, 32, 32));//если встретили символ 0, то рисуем 3й квадратик
+			if ((*LMap)[i][j] == '.')  s_map.setTextureRect(IntRect(0, 0, 32, 32)); //если встретили символ ., то рисуем 1й квадратик
+			if ((*LMap)[i][j] == '^')  s_map.setTextureRect(IntRect(32, 0, 32, 32));//если встретили символ ^, то рисуем 2й квадратик
+			if ((*LMap)[i][j] == '=') s_map.setTextureRect(IntRect(64, 0, 32, 32));//если встретили символ =, то рисуем 3й квадратик
+			if ((*LMap)[i][j] == '@') s_map.setTextureRect(IntRect(64, 0, 32, 32));//если встретили символ @, то рисуем замок
+			if ((*LMap)[i][j] == '*') s_map.setTextureRect(IntRect(64, 0, 32, 32));//если встретили символ *, то рисуем логово
 
 			s_map.setPosition(j * 32, i * 32);//по сути раскидывает квадратики, превращая в карту. то есть задает каждому из них позицию. если убрать, то вся карта нарисуется в одном квадрате 32*32 и мы увидим один квадрат
 			Mwindow.draw(s_map);//рисуем квадратики на экран
 		}
 
 
-	//
+	//рисуем замок
 	dot cor;
 	map_image.loadFromFile("images/castle32.png");//загружаем файл для ЗАМКА
 	map_image.createMaskFromColor(Color(255, 255, 255));
@@ -74,6 +71,7 @@ int Map::Draw(RenderWindow &Mwindow){
 	s_map.setPosition(cor.x * 32, cor.y * 32);
 	Mwindow.draw(s_map);
 
+	//рисуем логово
 	map_image.loadFromFile("images/flagblack.png");//загружаем файл для Логова
 	map_image.createMaskFromColor(Color(255, 255, 255));
 	map.loadFromImage(map_image);//заряжаем текстуру картинкой
@@ -83,15 +81,17 @@ int Map::Draw(RenderWindow &Mwindow){
 	s_map.setPosition(cor.x * 32, cor.y * 32);
 	Mwindow.draw(s_map);
 
-	map_image.loadFromFile("images/2tower32.png");//загружаем файл для Логова
+	//рисуем башни
+	map_image.loadFromFile("images/2tower32.png");//загружаем файл для башни
 	map_image.createMaskFromColor(Color(255, 255, 255));
 	map.loadFromImage(map_image);//заряжаем текстуру картинкой
 	s_map.setTexture(map);//заливаем спрайт
 	s_map.setTextureRect(IntRect(0, 0, 32, 32));//можно не писать с данной картинкой
 
 
-	for (unsigned i = 0; i < (*Weapons).size(); i++)
+	for (unsigned i = 0; i < (*Weapons).size(); i++)//todo вынести в отдельный файл
 		{
+			//todo определение lvl
 			cor = (*(*Weapons)[i]).getCor();
 			//circle
 			float rad = (*(*Weapons)[i]).getRad();

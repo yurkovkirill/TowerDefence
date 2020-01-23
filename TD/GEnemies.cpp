@@ -7,7 +7,7 @@ int GEnemies::Draw(RenderWindow &window){
 	dot cor;
 	for (int i = 0; i < (*Enemyout).size(); i++)
 		{
-			if ((*Enemyout)[i].getSpeed() == 12){
+			if ((*Enemyout)[i].getSpeed() == 12){//todo
 				heroimage.loadFromFile("images/zubat.png");//загружаем в него файл
 				
 			}

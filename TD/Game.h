@@ -29,7 +29,7 @@ public:
 
 	bool checkStatus();
 
-	void Setup();/*std::string mfname*/
+	void Setup(std::string mfname);/*std::string mfname*/
 
 	void DrawAll();
 
@@ -38,6 +38,8 @@ public:
 	int InputK(char,int,int);
 
 	Game();
+
+	Game(std::string mfname);
 
 	~Game();
 };
